@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=750px,target-densitydpi=device-dpi,user-scalable=no">
+<meta name="robots" content="index, follow" />
+<title>{dede:field.title/}_{dede:global.cfg_webname/}</title>
+<meta name="keywords" content="{dede:field name='keywords'/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<link href="/m/skin/images/favicon.ico" rel="shortcut icon" />
+<link href="/m/skin/css/css.css" rel="stylesheet" />
+<script src="/m/skin/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/m/skin/js/basic.js"></script>
+<!--[if lt IE 9]>
+<script src="/m/skin/js/html5shiv.min-3.7.3.js"></script>
+<script src="/m/skin/js/respond.min1.4.2.js"></script>
+<![endif]--></head>
+
+<body>
+
+<!--头部begin-->
+{dede:include filename="header_m.htm"/} 
+<div class="touch_bg">&nbsp;</div>
+<!-- E touch-top-wrapper -->
+<div class="blank_h">&nbsp;</div>
+<script src="/m/skin/js/public.js">//导航</script>
+<!--头部end-->
+<!--正文begin-->
+<!--轮显begin-->
+
+<div class="news_bg">
+    <div class="position">
+        <div class="wrap2">
+            <div class="postions_r l"><img src="/m/skin/images/home.png" alt="首页" />
+            
+            {dede:field name='position'/} &nbsp;&gt;&nbsp;
+            </div>
+            <div class="postions_b">
+                <div class="about_tc">
+                    <div class="about_divs">
+                     {dede:channel type='son' row='10'} <a href="list.php?tid=[field:id/]" title="[field:typename/]" class="isel">[field:typename/]</a>{/dede:channel}
+                                            </div>
+                    <img src="/m/skin/images/about_pic1.png" class="closed2" />
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="rclass">&nbsp;</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="news_ul">
+            <ul>
+
+            
+                                                {dede:list pagesize ='12'} <li>
+                    <a href="view.php?aid=[field:id/]">
+                        <em>[field:pubdate function="MyDate('y-m-d',@me)"/]</em>[field:title/]</a>
+                </li>{/dede:list}
+                             
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+<!--正文end-->
+{dede:include filename="footer_m.htm"/}
+
+<a href="javascript:void(0)" class="gotop" onClick="goTop()"></a>
+<!--尾部end-->
+<script language="javascript" src="/m/skin/js/foot.js"></script>
+<div class="about_bgs">&nbsp;</div>
+<script src="/m/skin/js/about_left.js"></script>
+<!--尾部end-->
+</body>
+</html>

@@ -1,0 +1,1 @@
+<div class="more_i"><a href="list.php?tid=[field:id/]" title="点击查看更多">点击查看更多</a></div>

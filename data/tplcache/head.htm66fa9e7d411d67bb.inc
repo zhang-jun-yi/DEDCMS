@@ -1,0 +1,47 @@
+<?php
+$z[0]=Array("global","",2687,2714);
+$z[0][4]=array();
+$z[0][4]['name']="cfg_basehost";
+$z[1]=Array("global","",3640,3667);
+$z[1][4]=array();
+$z[1][4]['name']="cfg_basehost";
+$z[2]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",3692,3777);
+$z[2][4]=array();
+$z[2][4]['typeid']="1";
+$z[3]=Array("channel","<dd><a href=\"[field:typeurl/]\">[field:typename/]</a></dd>",3918,4035);
+$z[3][4]=array();
+$z[3][4]['type']="son";
+$z[3][4]['row']="10";
+$z[3][4]['typeid']="1";
+$z[4]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",4229,4314);
+$z[4][4]=array();
+$z[4][4]['typeid']="2";
+$z[5]=Array("channel","<dd><a href=\"[field:typeurl/]\">[field:typename/]</a></dd>",4502,4619);
+$z[5][4]=array();
+$z[5][4]['type']="son";
+$z[5][4]['row']="10";
+$z[5][4]['typeid']="2";
+$z[6]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",4813,4898);
+$z[6][4]=array();
+$z[6][4]['typeid']="3";
+$z[7]=Array("channel","<dd><a href=\"[field:typeurl/]\">[field:typename/]</a></dd>",5086,5203);
+$z[7][4]=array();
+$z[7][4]['type']="son";
+$z[7][4]['row']="10";
+$z[7][4]['typeid']="3";
+$z[8]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",5398,5483);
+$z[8][4]=array();
+$z[8][4]['typeid']="4";
+$z[9]=Array("channel","<dd><a href=\"[field:typeurl/]\">[field:typename/]</a></dd>",5671,5788);
+$z[9][4]=array();
+$z[9][4]['type']="son";
+$z[9][4]['row']="10";
+$z[9][4]['typeid']="4";
+$z[10]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",5981,6066);
+$z[10][4]=array();
+$z[10][4]['typeid']="6";
+$z[11]=Array("type","<a href=\"[field:typelink /]\">[field:typename /]</a>",6159,6244);
+$z[11][4]=array();
+$z[11][4]['typeid']="5";
+
+?>

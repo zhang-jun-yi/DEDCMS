@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>实名认证 - 会员中心-
+        <?php echo $cfg_webname; ?>
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="templets/siy/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="templets/siy/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="templets/siy/css/bootstrap.css" type="text/css" />
+    <!-- Custom CSS -->
+    <link href="templets/siy/css/angulr-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="templets/siy/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="templets/siy/css/app.css" type="text/css" />
+    <script src="templets/siy/js/jquery.js"></script>
+    <script src="templets/siy/js/zbp_add.js"></script>
+    <script type="text/javascript" src="templets/js/face.js"></script>
+    <!-- ZCenter js-->
+    <!-- zbp system -->
+    <script src="templets/siy/js/zblogphp.js" type="text/javascript"></script>
+    <script src="templets/siy/js/c_admin_js_add.js" type="text/javascript"></script>
+    <!--
+    <script src="templets/siy/js/jquery-ui.custom.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="templets/siy/css/jquery-ui.custom.css"/>
+-->
+    <script src="templets/siy/js/functions.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="templets/siy/js/html5shiv.js"></script>
+        <script src="templets/siy/js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="app app-header-fixed ">
+        <?php include(DEDEMEMBER."/templets/head2.htm"); ?>
+        <!-- index_menu -->
+        <?php include(DEDEMEMBER."/templets/index_menu.htm"); ?>
+        <!-- content -->
+        <div id="content" class="app-content" role="main">
+            <div class="app-content-body ">
+                <div class="bg-light lter b-b wrapper-md">
+                    <h1 class="m-n font-thin h3">
+                        <?php echo $cfg_ml->M_LoginID ?>实名认证信息
+                    </h1>
+                    <p></p>
+                    <form action="sm.php" method="post" enctype="multipart/form-data" name="form2" onsubmit="return checkSubmit();">
+                        <input type="hidden" name="dopost" value="save" />
+                </div>
+
+                <table class="table table-bordered table-hover table-striped table_striped table_hover">
+                    <thead>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">用户名</span></th>
+                            <th class="td15"><input name="userid" type="text" disabled="disabled" style="background-color: #F0F3F4;" id="userid" value="<?php echo $cfg_ml->M_LoginID; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">推荐人</span></th>
+                            <th class="td15"><input name="uname" type="text" disabled="disabled" style="background-color: #F0F3F4;" id="uname" value="<?php echo $row['uname']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">真实姓名</span></th>
+                            <th class="td15"><input name="rname" type="text" id="name" value="<?php echo $row['rname']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">手机号</span></th>
+                            <th class="td15"><input name="phone" type="text" id="phone" value="<?php echo $row['phone']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">身份证号</span></th>
+                            <th class="td15"><input name="cardno" type="text" id="cardno" value="<?php echo $row['cardno']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #FAFBFC;">
+                            <th class="td5"><span class="hei">身份证正面照片</span></th>
+                            <th><input name="pic1" type="text" id="pic1" value="<?php echo $row['pic1']; ?>" class="form-control" /></th>
+                            <th><input name="pic11" type="file" id="pic11" style="width:300px" /></th>
+
+                        </tr>
+
+                        <tr align="center" style="background-color: #F6FCFE;">
+                            <th class="td5"><span class="hei">身份证反面照片</span></th>
+                            <th><input name="pic2" type="text" id="pic2" value="<?php echo $row['pic2']; ?>" class="form-control" /></th>
+                            <th><input name="pic21" type="file" id="pic21" style="width:300px" value="" /></th>
+
+                        </tr>
+                        <tr align="center" style="background-color: #FAFBFC;">
+                            <th class="td5"><span class="hei">银行卡正面照片</span></th>
+                            <th><input name="pic3" type="text"  id="pic3" value="<?php echo $row['pic3']; ?>" class="form-control" /></th>
+                            <th><input name="pic31" type="file" id="pic31" style="width:300px" /></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">银行卡号</span></th>
+                            <th class="td15"><input name="bankno" type="text" id="bankno" value="<?php echo $row['bankno']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">开户行地址</span></th>
+                            <th class="td15"><input name="bankaddr" type="text" id="bankaddr" value="<?php echo $row['bankaddr']; ?>" class="form-control" /></th>
+                            <th></th>
+                        </tr>
+
+                        <tr align="center" style="background-color: #F6FCFE;">
+                            <th></th>
+                            <th class="td15" style="float:center"> <input type="submit" value="确认修改" class="btn btn-primary"></th>
+                            <th></th>
+                        </tr>
+                        </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+        <!-- /content -->
+        <script type="text/javascript">
+            ZCenter_ActiveLeftMenu("aDashboard");
+        </script>
+        <?php include(DEDEMEMBER."/templets/foot.htm"); ?>
+    </div>
+    <script src="templets/siy/js/bootstrap.js"></script>
+    <script src="templets/siy/js/ui-load.js"></script>
+    <script src="templets/siy/js/ui-jp.config.js"></script>
+    <script src="templets/siy/js/ui-jp.js"></script>
+    <script src="templets/siy/js/ui-nav.js"></script>
+    <script src="templets/siy/js/ui-toggle.js"></script>
+    <script src="templets/siy/js/ui-client.js"></script>
+</body>
+
+</html>

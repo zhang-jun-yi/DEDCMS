@@ -1,0 +1,27 @@
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 15:50:32','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 15:55:14','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 15:55:42','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 16:05:27','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 16:05:40','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 16:08:38','user002'); ||comment detect
+0.0.0.0||/user/sm.php||INSERT INTO `#@_member_sm`(`mid`,`name`,`cardno`,`zhengpath`,`fanpath`,`shoupath`,`jointime`,`userid`)
+        VALUES ('3','张三','410327199901110123564','司法所开发是否','大手大脚阿卡丽福建阿洛克积分','手机放卡里就放开手','2020-09-22 16:10:53','user002'); ||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901110123564,`zhengpath`=司法所开发是否,`fanpath`=大手大脚阿卡丽福建阿洛克积分,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:15:35,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:17:49,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:18:21,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:18:55,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:25:20,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:29:13,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901,`zhengpath`=safsa,`fanpath`=大手大脚阿卡丽福建阿洛克积分asfsa,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:29:14,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901110123564,`zhengpath`=dsaf,`fanpath`=大手大脚阿卡丽福建阿洛克积分sdf,`shoupath`=sdf里就放开手,`uptime`=2020-09-22 16:32:42,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901110123564,`zhengpath`=dsaf,`fanpath`=大手大脚阿卡丽福建阿洛克积分sdf,`shoupath`=sdf里就放开手,`uptime`=2020-09-22 16:35:36,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901110123564,`zhengpath`=sdfsfs所开发是否,`fanpath`=大手大脚阿卡丽福建阿洛克积分,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:48:08,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`=张三,`cardno`=410327199901110123564,`zhengpath`=sdfsfs所开发是否,`fanpath`=大手大脚阿卡丽福建阿洛克积分,`shoupath`=手机放卡里就放开手,`uptime`=2020-09-22 16:50:11,`userid`=user002 WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`='张三',`cardno`='41032719sdfs',`zhengpath`='司法所开发是否',`fanpath`='大手大脚阿卡丽福建阿洛克积分',`shoupath`='手机放卡里就放开手',`userid`='user002' WHERE 1||comment detect
+0.0.0.0||/user/sm.php||UPDATE `#@_member_sm` SET `name`='张三',`cardno`='41032719sdfs',`zhengpath`='司法所开发是否',`fanpath`='大手大脚阿卡丽福建阿洛克积分',`shoupath`='手机放卡里就放开手',`userid`='user002' WHERE 1||comment detect

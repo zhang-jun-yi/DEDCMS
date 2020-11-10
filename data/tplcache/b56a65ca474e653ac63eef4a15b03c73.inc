@@ -1,0 +1,1 @@
+<li data-background="[field:picname/]" alt="[field:title/]"></li>

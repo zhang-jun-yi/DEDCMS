@@ -1,0 +1,2 @@
+INSERT INTO `dede_admin` VALUES('1','10','www.zdgjgw.cn','cd5cabf39ecaed7c3701','zdgjgw','','','','1604460455','120.197.161.115');
+INSERT INTO `dede_admin` VALUES('12','10','zdgjgw','cd5cabf39ecaed7c3701','zdgjgw','','','','1604739295','117.136.40.246');

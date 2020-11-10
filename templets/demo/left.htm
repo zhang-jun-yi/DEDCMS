@@ -1,0 +1,18 @@
+<div class="lt into_lt">
+        <div class="column01_box">
+            <h2>{dede:field name='typename'/}</h2>
+            <div class="column01">
+                <ul class="fix">
+                    {dede:channel type='son' currentstyle="
+      <li><a href='~typelink~' class='thisclass'>~typename~</a></li>
+      "} <li><a href="[field:typeurl/]" class="co00757F">[field:typename/]</a></li> {/dede:channel}
+                                    </ul>
+            </div>
+        </div>
+        <div class="column03_box">
+            <h2>热点推荐</h2>
+            <div class="column03">
+               {dede:arclist flag='c' row='6'}<a href="[field:arcurl/]">[field:title/]</a>{/dede:arclist}
+            </div>
+        </div>
+    </div>

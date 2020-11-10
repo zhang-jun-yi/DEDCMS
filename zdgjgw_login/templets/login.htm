@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $cfg_soft_lang; ?>">
+<title>翔创网络后台管理系统</title>
+<link href="css/login.css" rel="stylesheet" type="text/css" />
+<link href="css/login1.css" rel="stylesheet" type="text/css" />
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<script src="../include/js/jquery/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript">
+$ = jQuery;
+function changeAuthCode() {
+	var num = 	new Date().getTime();
+	var rand = Math.round(Math.random() * 10000);
+	num = num + rand;
+	$('#ver_code').css('visibility','visible');
+	if ($("#vdimgck")[0]) {
+		$("#vdimgck")[0].src = "../include/vdimgck.php?tag=" + num;
+	}
+	return false;	
+}
+</script>
+</head>
+<body>
+<div class="login">
+    <div class="login_wk">
+        <div class="login_title"><p>翔创网络管理系统登录<span>Information platform management system v1.1</span></p></div><div class="clear"></div>
+        
+        <form name="form1" method="post" action="login.php">
+        <input type="hidden" name="gotopage" value="<?php if(!empty($gotopage)) echo RemoveXSS($gotopage);?>" />
+        <input type="hidden" name="dopost" value="login" />
+        <input name="adminstyle" type="hidden" value="newdedecms" />
+        <div class="login_form">
+        <li><input name="userid" type="text" class="input_txt1"  placeholder="请输入账号"/></li>
+        <li><input name="pwd" type="password" class="input_txt1"  placeholder="请输入密码"/></li>
+        <?php
+            if(preg_match("/6/",$safe_gdopen))
+            {
+        ?>
+        <li><input id="vdcode" name="validate" type="text" class="input_txt1 input_txt2"  placeholder="请输入验证码"/>
+        <span>
+       <img id="vdimgck" align="absmiddle" onClick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="../include/vdimgck.php"/>
+        </span>
+        </li>
+        <?php
+            }
+        ?>
+        <li><input name="sm1" type="submit" class="input_btn" value="登陆系统" onclick="this.form.submit();"/></li>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="mbot" class="top9">
+    <div id="mbleft">
+
+        <div id="mbl1"><span><img src="images/index_14.jpg" width="67" height="63"/></span>
+
+            <h3>营销型网站建设</h3>
+           10多年经验的网络营销团队，提供专业的网站策划服务，策划出具备吸引力的网站，提高企业网络营销转化率。
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+    <div id="mbmid">
+        <div id="mbl1"><span><img src="images/index_28.jpg" width="67" height="66"/></span>
+
+            <h3>网站SEO优化/SEM推广</h3>
+            国内首创关键词按天付费，排名不在百度前两页不收费，再通过精准关键词商机发送，拦截您的竞争对手，从而达到品牌推广与销售目的。
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+    <div id="mbright">
+        <div id="mbl1"><span><img src="images/index_30.jpg" width="71" height="58"/></span>
+
+            <h3>代办营业执照/代理记账</h3>
+            公司代办及财税代理一站式企业服务，营业执照注册不成功不收费 , 快至2天出证，专业的财会服务保企业财税无忧，让更多中小型企业省心、放心。
+            <div class="clear"></div>
+        </div>
+       
+    </div>
+
+   
+
+<div id="foot">
+<ul>
+        <li>13662965510 Copyright ©  <a href="http://www.dh-w.com">东莞市翔创网络科技有限公司</a>  All Rights Reserved.<br/>
+            地址：东莞市南城区胜和社区金朗路1号大朗商业大厦5楼 电话总机：0769-22039718
+        </li> 
+    </ul>
+</div> 
+</body>
+</html>

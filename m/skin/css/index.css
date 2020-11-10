@@ -1,0 +1,16 @@
+﻿@import url(style.css);
+@import url(pscroll.css);
+/*首页*/
+.i_ul{ overflow:hidden;margin-top:2.1%;}
+.i_ul ul li{ float:left;overflow:hidden; width:49%; margin-right:2%; margin-bottom:2%;}
+.i_ul ul li:nth-child(2n+0){ margin-right:0;}
+.i_ul ul li:last-child{ width:100%; margin-right:0;}
+.i_ul ul li a{ display:block;border:1px solid #006b9b; overflow:hidden; text-align:center; padding-bottom:26px;}
+.i_ul ul li i{width: 41px; height: 41px; background-repeat:no-repeat; background-position:center center; background-size:100% 100%; margin:0 auto; display:block; margin-top:27px;}
+.i_ul ul li.nav01 i{ background-image:url(../images/i_pic1.png);}
+.i_ul ul li.nav02 i{ background-image:url(../images/i_pic2.png);}
+.i_ul ul li.nav03 i{ background-image:url(../images/i_pic3.png);}
+.i_ul ul li.nav04 i{ background-image:url(../images/i_pic4.png);}
+.i_ul ul li.nav05 i{ background-image:url(../images/i_pic5.png);}
+.i_ul ul li .h3{ font-weight:normal; height:28px; line-height:28px; overflow:hidden; font-size:20px; color:#333;margin-top:8px;}
+.i_ul ul li span{ display:block; height:28px; line-height:28px; overflow:hidden; font-size:20px; color:#333;}

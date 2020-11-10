@@ -1,0 +1,42 @@
+﻿.navbar-right .zcenter-open a{
+    background-color: #17B2E2 !important;
+}
+.bootstrap-touchspin{
+    max-width:150px;
+}
+.orderitem-status {
+    padding: 50px 0;
+    text-align: right;
+}
+.orderitem-status p {
+    color: #bbb;
+}
+.orderitem-coupon {
+    display:none;
+    opacity:0;
+    font-size: 12px;
+    overflow: hidden;
+    padding: 10px 0 0;
+    margin-bottom:6px;
+}
+
+.btnusecoupon {
+    cursor: pointer;
+}
+
+
+a.up, a.down {
+    background-color: #878787;
+    border: 1px solid #878787;
+    border-radius: 4px;
+    color: #fff !important;
+    font-size: 13px;
+    height: 24px;
+    padding: 2px 8px;
+    width: 24px;
+    text-decoration:none;
+}
+.numtext {
+    box-sizing: border-box;
+    width: 40px;
+}
