@@ -45,9 +45,11 @@
             <div class="app-content-body ">
                 <div class="bg-light lter b-b wrapper-md">
                     <h1 class="m-n font-thin h3">
-                        <?php echo $cfg_ml->M_LoginID ?>的基本资料
+                        <?php echo $cfg_ml->M_LoginID ?>的基本资料   
                     </h1>
-                    <p></p>
+                    <h5>
+                        邀请码:<?php echo $row['mid'] ?>
+                    </h5>
                     <form action="zl.php" method="post" enctype="multipart/form-data" name="form2" onsubmit="return checkSubmit();">
                         <input type="hidden" name="dopost" value="save" />
                 </div>
@@ -61,12 +63,27 @@
                         </tr>
                         <tr align="center" style="background-color: #F6FCFE">
                             <th class="td5"><span class="hei">推荐人</span></th>
-                            <th class="td15"><input name="uname" type="text"  id="uname" disabled="disabled"  value="<?php echo $row['uname']; ?>" class="form-control" /></th>
+                            <th class="td15"><input name="uname" type="text"  id="uname" disabled="disabled"  value="<?php echo $pname; ?>" class="form-control" /></th>
                              <th></th>
                         </tr>
                         <tr align="center" style="background-color: #F6FCFE">
-                            <th class="td5"><span class="hei">邮箱</span></th>
-                            <th class="td15"><input name="email"" type="text" dstyle="background-color: #F0F3F4;" id="email" value="<?php echo $row['email']; ?>" class="form-control" /></th>
+                            <th class="td5"><span class="hei">开户行</span></th>
+                            <th class="td15"><input name="email"" type="text" dstyle="background-color: #F0F3F4;" id="email" value="<?php echo $row['bankaddr']; ?>" class="form-control" /></th>
+                             <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE;">
+                            <th class="td5"><span class="hei">身份证正面照</span></th>
+                            <th class="td15"><img name="card1"  src="<?php echo $row['pic1']; ?>" style="width: 260px;height: 130px;"/></th>
+                             <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE;margin: 0 auto;">
+                            <th class="td5"><span class="hei">身份证反面照</span></th>
+                            <th class="td15"><img name="card1"  src="<?php echo $row['pic2']; ?>" style="width: 260px;height: 130px;" /></th>
+                             <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE;margin: 0 auto;">
+                            <th class="td5"><span class="hei">银行卡正面照</span></th>
+                            <th class="td15"><img name="card1"  src="<?php echo $row['pic3']; ?>" style="width: 260px;height: 130px;"/></th>
                              <th></th>
                         </tr>
                         <tr align="center" style="background-color: #FAFBFC;">
@@ -87,20 +104,9 @@
                             <th></th>
                         </tr>
 
-
-                        <tr align="center" style="background-color: #FAFBFC;">
-                            <th class="td5"><span class="hei">性别</span></th>
-                            <th class="td15">
-                                <input type="radio" name="sex" value="男" <?php if($row[ 'sex']=='男' ) echo " checked='checked' "; ?>/> 男 &nbsp;
-                                <input type="radio" name="sex" value="女" <?php if($row[ 'sex']=='女' ) echo " checked='checked' "; ?>/> 女 &nbsp;
-                                <input type="radio" name="sex" value="保密'" <?php if($row[ 'sex']=='保密' ) echo " checked='checked' "; ?>/> 保密
-                            </th>
-                            <th class="td15"></th>
-                        </tr>
-
                         <tr align="center" style="background-color: #F6FCFE;">
                             <th class="td5"><span class="hei">验证码</span></th>
-                            <th class="td15"><strong> <input name="vdcode" type="text" id="vdcode" style='width:120px;text-transform:uppercase;' class="form-control"/> </strong></th>
+                            <th class="td15"><strong> <input name="vdcode" type="text" id="vdcode" style='text-transform:uppercase;' class="form-control"/> </strong></th>
                             <th class="td15"> <img src="../include/vdimgck.php" align="absmiddle" alt="看不清？点击更换" style="cursor:pointer" onclick="this.src=this.src+'?'" /> <span>看不清？点击更换验证码</span> </th>
                         </tr>
 

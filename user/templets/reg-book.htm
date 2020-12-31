@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>会员注册</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="templets/siy/css/bootstrap.min_1.css">
+    <link rel="stylesheet" href="templets/siy/css/font-awesome.min_1.css">
+    <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy.css" type="text/css" media="all" />
+    <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy_1.css" media="all" />
+    <link rel="stylesheet" href="templets/layui/css/layui.css"  media="all">
+</head>
+<body style="text-align: center;">
+    <div style="text-align: center;height: 100px;">
+        <span class="layui-breadcrumb" lay-separator="----->" style="height: 100px; line-height:100px;" >
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">1、</span>
+                <span style="font-size: 1em;color: black;">填写基本信息</span></a>
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">2、</span>
+                <span style="font-size: 1em;color: black;">上传身份证相关照片</span></a>
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">3、</span>
+                <span style="font-size: 1em;color: dodgerblue;">开户协议书</span></a>
+          </span>
+    </div>
+    <form class="layui-form" action="reg.php" method="POST">
+        <input type="hidden" value="reght" name="dopost" />
+        <input type="hidden" value="3" name="step" />
+        <fieldset class="layui-elem-field" >
+            <legend>请认真阅读:<span style="color:red">开户协议书</span></legend>
+            <h5>市场风险莫测  务请谨慎从事</h5>
+            <div class="layui-field-box" style="width: 900px;text-align: left;margin: 0 auto;">
+                <p>
+                    尊敬的客户：<br />
+                    期货交易采取保证金交易方式，具有杠杆性风险，可能发生巨额损失，您应当充分理解并遵循&ldquo;买卖自负&rdquo;的金融市场原则，充分认识期货交易风险，自行承担交易结果。<br />
+                    考虑是否进行期货交易时，您应当明确以下几点：<br />
+                    <br />
+                    一、您在期货市场进行交易，假如市场走势对您不利导致您的账户入金金额亏损达到一定比例时，您需主动追加保证金或减仓操作，以使您能继续持有未平仓合约。若您入金金额亏损至与甲方协商的强平线金额时，会触发账户强行平仓操作指令，如您未在触及强平线前存入所需保证金，您持有的未平仓合约将可能在亏损的情况下被强行平仓，您必须承担由此导致的一切损失。您应主动进行仓位调整和主动止损，因为无法知晓您的操作意向及操作时间，在账户触发强行平仓操作指令时，如果您也同时平仓，由此可能会造成仓位比正常强平时多出或者减少，您必须承担由此导致的一切损失。<br />
+                    二、您必须认真阅读并遵守期货交易的规则，如果您无法满足期货交易规则规定的要求，您所持有的未平仓合约将可能根据有关规则被强行平仓，您必须承担由此产生的后果。<br />
+                    三、在某些市场情况下，您可能会难以或无法将持有的未平仓合约平仓。包括但不限于在市场达到涨跌停板时等情形下出现这类情况。此时您的所有保证金有可能无法弥补全部损失，您必须承担由此导致的全部损失。<br />
+                    四、由于国家法律、法规、政策等的变化、期货交易所交易规则的修改、紧急措施的出台等原因，您持有的未平仓合约可能无法继续持有，您必须承担由此导致的损失。<br />
+                    五、由于非期货交易所或者期货公司所能控制的原因，包括但不限于地震、水灾、火灾等不可抗力因素或者计算机系统、通讯系统故障等，可能造成您的指令无法成交或者无法全部成交，您必须承担由此导致的损失。<br />
+                    六、利用互联网进行期货交易时将存在包括但不限于以下风险，您将承担由此导致的盈利或损失：<br />
+                    1．由于无法控制和不可预测的系统故障、设备故障、通讯故障、电力故障、网络故障及其它因素，可能导致交易系统非正常运行甚至瘫痪，使您的交易指令出现延迟、中断、数据错误等情况；<br />
+                    2．由于网上交易系统存在被网络黑客和计算机病毒攻击的可能性，由此可能导致交易系统故障，使交易无法进行及行情信息出现错误或延迟；<br />
+                    3．由于互联网上的数据传输可能因通信繁忙等原因出现延迟、中断、数据错误或不完全，从而使网上交易及行情出现延迟、中断数据错误或不完全；<br />
+                    4．由于您未充分了解期货交易及行情软件的实际功能、信息来源、固有缺陷和使用风险，导致您对软件使用不当，造成决策和操作失误；<br />
+                    5．您的网络终端设备及软件系统与期货公司所提供的网上交易系统不兼容，可能导致无法下达委托或委托失败；<br />
+                    6．如果您缺乏网上交易经验，可能因操作不当造成交易失败或交易失误；&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                    7．若台风预警，可能造成交易所的临时性提早收盘或半日市交易的情况，我们公司有权根据期货公司所规定的时间，进行立即强平或规定时间强制平仓；<br />
+                    8. 您的密码失密或被盗用。<br />
+                    <br />
+                    本《期货交易风险揭示书》无法揭示从事期货交易的所有风险和有关期货市场的全部情形。您在入市交易之前，应全面了解期货交易法律法规、期货交易所规则及期货公司的业务规则，全面评估自身的经济实力、产品认知能力、风险控制能力、生理及心理承受能力(仅对自然人客户而言）等，审慎决定是否参与期货交易。<br />
+                    同时，使用本系统以及相关交易软件时，请勿泄露资金账户密码，严禁别人代操作。<br />
+                    以上《期货交易风险揭示书》的各项内容，本人/单位已阅读并完全理解。<br />
+                    &nbsp;</p>
+                
+                
+            </div>
+          </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" type="submit">确认并注册</button>
+        </div>
+      </div>
+    </form>
+</body>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script>
+  layui.use(['layer', 'upload', 'element', 'form'], function () {
+    var $ = layui.jquery
+      , layer = layui.layer //弹层
+      , upload = layui.upload //上传
+      , element = layui.element//元素操作 等等...
+      , form = layui.form; //表单
+    });
+  </script>
+</html>

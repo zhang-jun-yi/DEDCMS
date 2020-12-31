@@ -1,55 +1,77 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-        <?php echo $cfg_webname; ?>- 会员注册</title>
+    <title>会员注册</title>
     <!-- CSS -->
     <link rel="stylesheet" href="templets/siy/css/bootstrap.min_1.css">
     <link rel="stylesheet" href="templets/siy/css/font-awesome.min_1.css">
     <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy.css" type="text/css" media="all" />
     <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy_1.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="templets/layui/css/layui.css" />
 </head>
-
 <body>
-    <div class="tx-login">
-        <!-- Top content -->
-        <div class="tx-login-box">
-            <h1 class="text-center mb20">会员注册</h1>
-            <p class="text-center mb20 hui">请输入您的邮箱、姓名、和密码并注册:</p>
-            <div class="form-bottom">
-                <form method="post" action="reg.php" id="regUser" name="form2" class="login-form">
-                    <input type="hidden" value="regbase" name="dopost" />
-                    <input type="hidden" value="1" name="step" />
-                    <input type="hidden" value="个人" name="mtype" />
-                    <div class="tx-xian">
-                        <input id="txtUsername" type="text" class="form-username tx-input1" placeholder="请输入用户名" name="userid" />
-                    </div>
-                    <div class="tx-xian">
-                        <input id="rname" type="text" class="form-username tx-input1" placeholder="请输入您的邮箱" name="email" />
-                    </div>
-                    <div class="tx-xian">
-                        <input id="txtPassword" type="password" class="form-username tx-input1" placeholder="请输入登录密码" name="userpwd" onkeyup="setPasswordLevel(this, document.getElementById('passwordLevel'));" />
-                    </div>
-                    <div class="tx-xian">
-                        <input id="userpwdok" type="password" class="form-username tx-input1" placeholder="请输入确认密码..." name="userpwdok" />
-                    </div>
-                    <div class="tx-xian">
-                        <input id="pid" type="text" class="form-username tx-input1" placeholder="推荐人ID" name="pid" />
-                    </div>
-                    <div class="tx-xian tx-verifycode1">
-                        <input type="text" name="vdcode" placeholder="验证码..." class="form-verifycode tx-input1" id="vdcode">
-                        <img id="vdimgck" align="absmiddle" onclick="this.src=this.src+'?'" class="tx-verifycode" alt="看不清？点击更换" src="../include/vdimgck.php" />
-                    </div>
-                    <p class="text-center mb20">已有
-                        <?php echo $cfg_webname; ?>帐号？ <a href="login.php">立即登录</a>
-                        <button type="submit" id="btnSignCheck" class="tx-button">确认注册</button>
-                </form>
-            </div>
-        </div>
+    <div style="text-align: center;height: 100px;">
+        <span class="layui-breadcrumb" lay-separator="----->" style="height: 100px; line-height:100px;" >
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">1、</span>
+                <span style="font-size: 1em;color: dodgerblue;">填写基本信息</span></a>
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">2、</span>
+                <span style="font-size: 1em;color: black;">上传身份证相关照片</span></a>
+            <a href=""><span style="color: darkviolet; font-size: 2em;font-style:italic;">3、</span>
+                <span style="font-size: 1em;color: black;">开户协议书</span></a>
+          </span>
     </div>
+    <div class="site-text site-block" style="text-align: center;"> 
+    <form class="layui-form" action="reg.php" method="POST">
+        <input type="hidden" value="regbase" name="dopost" />
+        <input type="hidden" value="1" name="step" />
+        <input type="hidden" value="个人" name="mtype" />
+        <div style="text-align: center;margin-bottom: 10px;">
+            <h5>请认真填写以下信息:<span style="color:red">（*为必填项）</span></h5>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-form-item ">
+                 <label class="layui-form-label">姓名：</label>
+                 <div class="layui-input-block">
+                   <input type="text" name="userid" required  lay-verify="required" placeholder="请输入您的姓名" autocomplete="off" class="layui-input">
+                 </div>
+               </div>
+               <div class="layui-form-item">
+                   <label class="layui-form-label" style="width:90px">推荐码：</label>
+                   <div class="layui-input-block">
+                     <input type="text" name="pid" required  lay-verify="required" placeholder="请输入您的推荐码" autocomplete="off" class="layui-input">
+                   </div>
+                 </div>
+               <div class="layui-form-item">
+                 <label class="layui-form-label" >密码：</label>
+                 <div class="layui-input-block">
+                   <input type="password" name="pwd" required lay-verify="required" placeholder="请输入您的密码" autocomplete="off" class="layui-input">
+                 </div>
+               </div>
+               <div class="layui-form-item">
+                 <div class="layui-input-block">
+                   <button class="layui-btn" type="submit">下一步</button>
+                 </div>
+               </div>
+        </div>
+       
+    </div>
+    </form>
 </body>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<!--您的Layui代码start-->
+<script type="text/javascript">
+layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element','form'], function() {
+  var laydate = layui.laydate //日期
+  ,laypage = layui.laypage //分页
+  ,layer = layui.layer //弹层
+  ,table = layui.table //表格
+  ,carousel = layui.carousel //轮播
+  ,upload = layui.upload //上传
+  ,element = layui.element//元素操作 等等...
+  ,form=layui.form; //表单
+});
 
+</script>
 </html>

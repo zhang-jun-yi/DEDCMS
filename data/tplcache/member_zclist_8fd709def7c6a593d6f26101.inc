@@ -66,7 +66,8 @@ $fields = array();
             </tr>
             <tr bgcolor="#FEFCEF" height="30" align="center">
                 <td width="3%">选择</td>
-                <td width="11%">昵称</td>
+                <td width="11%">用户名</td>
+                <td width="11%">推荐人</td>
                 <td width="16%">入金账号</td>
                 <td width="5%">入金金额</td>
                 <td width="8%">状态</td>
@@ -85,7 +86,9 @@ foreach( $blockValue as $key=>$fields )
             <tr height="26" align="center" bgcolor="#FFFFFF" onMouseMove="javascript:this.bgColor='#FCFDEE';"
                 onMouseOut="javascript:this.bgColor='#FFFFFF';">
                 <td><input name="mid" type="checkbox" id="mid" value="<?php echo $fields['id']; ?>" class="np" /></td>
-
+                <td>
+                    <?php echo $fields['userid']; ?>
+                </td>
                 <td>
                     <?php echo $fields['uname']; ?>
                 </td>

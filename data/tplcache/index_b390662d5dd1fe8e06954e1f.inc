@@ -48,7 +48,7 @@ $fields = array();
             <div class="app-content-body ">
                 <div class="bg-light lter b-b wrapper-md">
                     <h1 class="m-n font-thin h3">
-                        <?php echo $cfg_ml->M_UserName ?>的基本资料
+                        <?php echo $cfg_ml->M_LoginID ?>的基本资料
                     </h1>
                     <p></p>
                     <form action="zl.php" method="post" enctype="multipart/form-data" name="form2" onsubmit="return checkSubmit();">
@@ -59,11 +59,18 @@ $fields = array();
                     <thead>
                         <tr align="center" style="background-color: #F6FCFE">
                             <th class="td5"><span class="hei">用户名</span></th>
-                            <th class="td15"><input name="userid" type="text" style="background-color: #F0F3F4;" id="userid" value="<?php echo $user['userid']; ?>" class="form-control" /></th>
+                            <th class="td15"><input name="userid" type="text" disabled="disabled" style="background-color: #F0F3F4;" id="userid" value="<?php echo $user['userid']; ?>" class="form-control" /></th>
+                             <th></th>
                         </tr>
                         <tr align="center" style="background-color: #F6FCFE">
-                            <th class="td5"><span class="hei">昵称</span></th>
-                            <th class="td15"><input name="uname" type="text" style="background-color: #F0F3F4;" id="uname" value="<?php echo $user['uname']; ?>" class="form-control" /></th>
+                            <th class="td5"><span class="hei">推荐人</span></th>
+                            <th class="td15"><input name="uname" type="text"  id="uname" disabled="disabled"  value="<?php echo $user['uname']; ?>" class="form-control" /></th>
+                             <th></th>
+                        </tr>
+                        <tr align="center" style="background-color: #F6FCFE">
+                            <th class="td5"><span class="hei">邮箱</span></th>
+                            <th class="td15"><input name="email"" type="text" dstyle="background-color: #F0F3F4;" id="email" value="<?php echo $user['email']; ?>" class="form-control" /></th>
+                             <th></th>
                         </tr>
                         <tr align="center" style="background-color: #FAFBFC;">
                             <th class="td5"><span class="hei">原登陆密码</span></th>
@@ -96,14 +103,15 @@ $fields = array();
 
                         <tr align="center" style="background-color: #F6FCFE;">
                             <th class="td5"><span class="hei">验证码</span></th>
-                            <th class="td15"><strong> <input name="vdcode" type="text" id="vdcode" style='width:50px;text-transform:uppercase;' class="form-control"/> </strong></th>
+                            <th class="td15"><strong> <input name="vdcode" type="text" id="vdcode" style='width:120px;text-transform:uppercase;' class="form-control"/> </strong></th>
                             <th class="td15"> <img src="../include/vdimgck.php" align="absmiddle" alt="看不清？点击更换" style="cursor:pointer" onclick="this.src=this.src+'?'" /> <span>看不清？点击更换验证码</span> </th>
                         </tr>
 
                         <tr align="center" style="background-color: #F6FCFE;">
                             <th></th>
+                             <th class="td15" style="float:center"> <input type="submit" value="确认修改" class="btn btn-primary"></th>
                             <th></th>
-                            <th class="td15" style="float:right"> <input type="submit" value="确认修改" class="btn btn-primary"></th>
+                           
                         </tr>
                         </tbody>
                 </table>

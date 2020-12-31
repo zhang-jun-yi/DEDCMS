@@ -12,6 +12,14 @@ $menutype = 'config';
 if(!isset($dopost)) $dopost = '';
 $pwd2=(empty($pwd2))? "" : $pwd2;
 $row=$dsql->GetOne("SELECT  * FROM `#@__member` WHERE mid='".$cfg_ml->M_ID."'");
+$pname = '无推荐人';
+if(!empty($row['cardno']))
+{
+    $pid = $row['cardno'];
+    $puser= $dsql->GetOne("SELECT  * FROM `#@__member` WHERE mid='".$pid."'");
+    $pname = $puser['userid'];
+}
+
 
 $face = $row['face'];
 if($dopost=='save')
@@ -104,26 +112,6 @@ if($dopost=='save')
         }
         $addupquery .= ",uname='$uname'";
     }*/
-    
-    //性别
-    if( !in_array($sex, array('男','女','保密')) )
-    {
-        ShowMsg('请选择正常的性别！','-1');
-        exit();    
-    }
-    if($email != $row['email'])
-    {
-        if(!CheckEmail($email))
-        {
-            ShowMsg('Email格式不正确！','-1');
-            exit();
-        }
-        else
-        {
-            $addupquery .= ",email='$email'";
-        }
-    }
-
     
     $query1 = "UPDATE `#@__member` SET pwd='$pwd',sex='$sex'{$addupquery} where mid='$cfg_ml->M_ID' ";
     $dsql->ExecuteNoneQuery($query1);

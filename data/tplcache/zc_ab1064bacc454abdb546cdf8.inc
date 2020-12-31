@@ -74,57 +74,25 @@ $fields = array();
                           <br>
                         </form>
                     </div>
-                   <!--<div style="float: right; width: 50%;">
+                   <div style="float: right; width: 50%;">
                         <p aria-flowto="center">扫码转账</p>
                     </br>
-                    <h4>支持微信、支付宝扫码支付，支付时请备注用户详细信息
+                   
+                    <h4>支持微信、支付宝扫码支付及银行卡转账，支付时请备注用户详细信息
                     </h4>
-                    <img src="../user/images/taimi.jpg" width="300px" height="300px">
-                        <p aria-flowto="center">网银转帐</p>
-                        </br>
-                        <p>
-                            网银转帐（香港本地账户需要预先登记正大国际金融控股有限公司的银行账号后进行对外转帐）</br>
-                            使用登记电邮发送 info@zhengda.com.hk（客户账号、姓名、日期、金额、银行名称及银行账号，银行存款单/电汇收据/网上汇款截图）;</br>
-                            期货交易账户截止 记账时间为香港时间下午5时，逾时将顺延至下一个工作天处理;
-                        </p>
-                        <h3>入金账户信息 </h3>
-                        <h5 style="font-style: oblique;">華僑永亨銀行 (OCBC Wing Hang Bank Limited)</h5>
-                        <ul>
-                            <li>
-                                銀行賬戶名稱 : Zheng Da International Financial Holding Ltd - Client Account
-                            </li>
-                            <li>
-                                收款賬戶(美金): 035-854-156347-002
-                            </li>
-                            <li>
-                                收款賬戶(港幣): 035-854-155984-001
-                            </li>
-                            <li>
-                                收款銀行地址: Unit 01, 22/F, Crocodile Center, Kwun Tong, Kowloon, Hong Kong
-                            </li>
-                            <li>
-                                SWIFT Code: WIHBHKHH
-                            </li>
-                        </ul>
-                        <h5 style="font-style: oblique;">中國建設銀行(亞洲) (China Construction Bank (asia) Corporation Limited)</h5>
-                        <ul>
-                            <li>
-                                銀行賬戶名稱 : Zheng Da International Financial Holding Ltd - Client Account
-                            </li>
-                            <li>
-                                收款賬戶(美金): 009-846210037221
-                            </li>
-                            <li>
-                                收款賬戶(港幣): 009-846210037213
-                            </li>
-                            <li>
-                                收款銀行地址: 26/F, CCB Centre, 18 Wang Chiu Road, Kowloon Bay, Kowloon, Hong Kong
-                            </li>
-                            <li>
-                                SWIFT Code: CCBQHKAX
-                            </li>
-                        </ul>
-                    </div>--> 
+                    <div style="float: left;">
+                    <img src="../user/images/taimi.jpg" width="200px" height="200px">
+                </div>
+                <div style="float: right;">
+                    <h4>线下支付银行卡 中国建设银行</h4>
+                    <p>
+                        卡号:6236681540007254811</br>
+                        姓名:张阳</br>
+                        备注：为保证客户资金安全线下入金单笔最高5万
+                    </p>
+                </div>
+                    
+                    </div>
 
 
                 </div>

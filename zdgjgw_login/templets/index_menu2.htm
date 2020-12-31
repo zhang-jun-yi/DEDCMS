@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/menu.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/invalid.css" type="text/css" media="screen" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js" language="javascript" type="text/javascript"></script>
     <script language="javascript" src="js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="js/admin.jquery.configuration.js"></script>
     <script src="js/frame.js" language="javascript" type="text/javascript"></script>
@@ -75,7 +76,7 @@
                             <li><a class="nav-bottom-item" id="friendlink_main" href="friendlink_main.php" target="main">友情链接</a></li>
                             <li><a class="nav-bottom-item" id="sys_cache_up" href="sys_cache_up.php" target="main">更新系统缓存</a></li>
                             <li><a class="nav-bottom-item" id="makehtml_all" href="makehtml_all.php" target="main">一键更新网站（最后一步）</a></li>
-
+                            
                         </ul>
                     </li>
                     <li> <a id="sys" href="javascript:void(0);" class="nav-top-item"> 技术员操作后台</a>
@@ -237,6 +238,57 @@ return FALSE;
         </div>
     </div>
     </div>
+    <div id="result"></div>
 </body>
+<script type="text/javascript">
+   var func = function () {
+    $.ajax({
+    async : true,
+    cache : false,
+    type : 'POST',
+    url : 'ordertips.php',
+    data : 'action=tips',
+    success : function(data) {
+    /**重点：前台接收到返回值，直接处理就行*/
+    if(data > 0)
+        playSound();
+    }
+});
+   }    
 
+   var playSound = function () {
+            var borswer = window.navigator.userAgent.toLowerCase();
+            if (borswer.indexOf("ie") >= 0) {
+                //IE内核浏览器
+                var strEmbed = '<embed id="tips" name="embedPlay" src="images/voice.mp3" autostart="true" hidden="true" loop="3"></embed>';
+                var sound = document.getElementById("result");
+                if (!document.getElementById("tips"))
+                    sound.innerHTML = strEmbed;
+                var embed = document.embedPlay;
+
+                //浏览器不支持 audion，则使用 embed 播放
+                embed.volume = 100;
+                //embed.play();这个不需要
+            } else {
+                //非IE内核浏览器
+                var strAudio = "<audio id='audioPlay' type='audio/mpeg' src='images/voice.mp3' hidden='true'>";
+                if (!document.getElementById("audioPlay")) {
+                   document.getElementById("result").innerHTML=strAudio;
+                }
+
+                var audio = document.getElementById("audioPlay");
+                var start = 0;//定义循环的变量
+                var times=3;//定于循环的次数
+                audio.onended = function() {
+                audio.play();//启动音频，也就是播放
+                start++;//循环
+                start == times && audio.pause();//也就是当循环的变量等于次数的时候，就会终止循环并且关掉音频
+                };
+                //浏览器支持 audio
+                audio.play();
+            }
+        };
+    //主动调用
+    setInterval("func()", 60000);
+</script>
 </html>

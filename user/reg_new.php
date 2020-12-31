@@ -1,5 +1,4 @@
-﻿m
-<?php
+﻿<?php
 /**
  * @version        $Id: reg_new.php 1 8:38 2010年7月9日Z tianya $
  * @package        DedeCMS.Member
@@ -15,6 +14,7 @@ if($cfg_mb_allowreg=='N')
     exit();
 }
 
+//注册用户基本信息
 if(!isset($dopost)) $dopost = '';
 $step = empty($step)? 1 : intval(preg_replace("/[^\d]/", '', $step));
 
@@ -22,6 +22,7 @@ if($step == 1)
 {
     if($cfg_ml->IsLogin())
     {
+        /*
         if($cfg_mb_reginfo == 'Y')
         {
             //如果启用注册详细信息
@@ -33,7 +34,7 @@ if($step == 1)
         }
         ShowMsg('你已经登陆系统，无需重新注册！', 'index.php');
         exit();
-    }
+    }*/
     if($dopost=='regbase')
     {
         $svali = GetCkVdValue();
@@ -362,4 +363,3 @@ if($step == 1)
     }
     require_once(DEDEMEMBER."/templets/reg-new2.htm");
 }
-

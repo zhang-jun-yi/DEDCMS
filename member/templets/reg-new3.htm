@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><?php echo $cfg_webname; ?>- 会员注册</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="templets/siy/css/bootstrap.min_1.css">
+        <link rel="stylesheet" href="templets/siy/css/font-awesome.min_1.css">
+        <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy.css" type="text/css" media="all" />
+        <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy_1.css" media="all" />
+    </head>
+    <body>
+        <div class="tx-login">
+            <!-- Top content -->
+            <div class="tx-login-box">
+                <h1 class="text-center mb20">注册成功</h1>
+                <p class="text-center mb20 hui">恭喜您：<?php echo $userid=empty($userid)? '' : '<b style="color:#FF1155;">'.$userid.'</b> ';?>注册成功!<br />
+    <?php if($cfg_mb_spacesta=="-10") echo '就差最后一步了，<font color="#FF1155">马上进入刚填写的邮箱验证!</font><br />';?>
+    <a href="<?php echo $cfg_cmspath; ?>/user/">进入会员中心</a>&nbsp;&nbsp;<a href="<?php echo $cfg_cmspath; ?>/">返回网站首页</a>
+                <div class="form-bottom">	  
+	
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

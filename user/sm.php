@@ -15,18 +15,19 @@ $row=$dsql->GetOne("SELECT  mid,userid,uname,rname,cardno,pic1,pic2,pic3,phone,b
 if($dopost=='save')
 {
     //检查数据   
+    
     if(!is_array($row) || empty($rname))
     {
         ShowMsg('您输入的真实姓名为空，不能完成实名认证','-1');
         exit();
     }
-   
+   /*
     if(empty($cardno))
     {
         ShowMsg('您输入的身份证号为空','-1');
         exit();
     }
-   
+   */
     #api{{
     if(defined('UC_API') && @include_once DEDEROOT.'/uc_client/client.php')
     {
@@ -45,8 +46,8 @@ if($dopost=='save')
     if(empty($pic3name)) {$pic3name = $pic3;}
     
     SaveUploadInfo($cfg_ml->M_LoginID,$filename,$mediatype);
-    SaveUploadInfo($cfg_ml->M_LoginID,$filename,$mediatype);
-    SaveUploadInfo($cfg_ml->M_LoginID,$filename,$mediatype);
+    SaveUploadInfo($cfg_ml->M_LoginID,$pic2name,$mediatype);
+    SaveUploadInfo($cfg_ml->M_LoginID,$pic3name,$mediatype);
     
     $query1 = "UPDATE `#@__member` SET rname='$rname',cardno='$cardno',pic1='$filename',pic2='$pic2name',pic3='$pic3name',phone='$phone',bankno='$bankno',bankaddr='$bankaddr' where mid='$cfg_ml->M_ID' ";
     $dsql->ExecuteNoneQuery($query1);

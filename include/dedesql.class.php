@@ -464,6 +464,7 @@ class DedeSql
         return mysql_fetch_field($this->result[$id]);
     }
 
+    
     //获得查询的总记录数
     function GetTotalRow($id="me")
     {

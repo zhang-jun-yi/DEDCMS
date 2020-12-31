@@ -187,10 +187,10 @@ else if($fmdo=='user')
     }
 
     //引入注册页面
-    else if($dopost=="regnew")
+    else if($dopost=="reg")
     {
-        $step = empty($step)? 1 : intval(preg_replace("/[^\d]/",'', $step));
-        require_once(dirname(__FILE__)."/reg_new.php");
+        $step = empty($step)? 0 : intval(preg_replace("/[^\d]/",'', $step));
+        require_once(dirname(__FILE__)."/reg.php");
         exit();
     }
   /***************************
