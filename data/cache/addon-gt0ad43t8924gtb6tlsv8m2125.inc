@@ -1,0 +1,27 @@
+<?php
+$myaddons = array();
+$maNum = 0;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 1;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 2;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 3;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 3;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 4;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 4;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 5;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 5;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 6;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 6;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302539-1331.jpg');
+$maNum = 7;
+$myaddons[$maNum] = array('0', '/uploads/userup/10043/1609302542-6211.jpg');
+$maNum = 7;

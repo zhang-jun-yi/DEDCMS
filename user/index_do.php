@@ -26,7 +26,7 @@ if($fmdo=='sendMail')
         exit();
     }
     $userhash = md5($cfg_cookie_encode.'--'.$cfg_ml->fields['mid'].'--'.$cfg_ml->fields['email']);
-    $url = $cfg_basehost.(empty($cfg_cmspath) ? '/' : $cfg_cmspath)."/user/index_do.php?fmdo=checkMail&mid={$cfg_ml->fields['mid']}&userhash={$userhash}&do=1";
+    $url = $cfg_basehost.(empty($cfg_cmspath) ? '/' : $cfg_cmspath)."/member/index_do.php?fmdo=checkMail&mid={$cfg_ml->fields['mid']}&userhash={$userhash}&do=1";
     $url = preg_replace("#http:\/\/#i", '', $url);
     $url = 'http://'.preg_replace("#\/\/#i", '/', $url);
     $mailtitle = "{$cfg_webname}--会员邮件验证通知";
@@ -35,6 +35,7 @@ if($fmdo=='sendMail')
     $mailbody .= "欢迎注册成为[{$cfg_webname}]的会员。\r\n";
     $mailbody .= "要通过注册，还必须进行最后一步操作，请点击或复制下面链接到地址栏访问这地址：\r\n\r\n";
     $mailbody .= "{$url}\r\n\r\n";
+    $mailbody .= "Power by http://www.dedecms.com UU医生管理系统！\r\n";
   
     $headers = "From: ".$cfg_adminemail."\r\nReply-To: ".$cfg_adminemail;
     if($cfg_sendmail_bysmtp == 'Y' && !empty($cfg_smtp_server))
@@ -49,7 +50,7 @@ if($fmdo=='sendMail')
     {
         @mail($cfg_ml->fields['email'], $mailtitle, $mailbody, $headers);
     }
-    ShowMsg('成功发送邮件，请稍后登录你的邮箱进行接收！', '/user');
+    ShowMsg('成功发送邮件，请稍后登录你的邮箱进行接收！', '/member');
     exit();
 }
 else if($fmdo=='checkMail')
@@ -75,7 +76,7 @@ else if($fmdo=='checkMail')
     $dsql->ExecuteNoneQuery("UPDATE `#@__member` SET spacesta=0 WHERE mid='{$mid}' ");
     // 清除会员缓存
     $cfg_ml->DelCache($mid);
-    ShowMsg('操作成功，请重新登录系统！', '/user/login.php');
+    ShowMsg('操作成功，请重新登录系统！', 'login.php');
     exit();
 }
 /*********************
@@ -187,9 +188,9 @@ else if($fmdo=='user')
     }
 
     //引入注册页面
-    else if($dopost=="reg")
+    else if($dopost=="regnew")
     {
-        $step = empty($step)? 0 : intval(preg_replace("/[^\d]/",'', $step));
+        $step = empty($step)? 1 : intval(preg_replace("/[^\d]/",'', $step));
         require_once(dirname(__FILE__)."/reg.php");
         exit();
     }
@@ -273,60 +274,6 @@ else if($fmdo=='login')
         //检查帐号
         $rs = $cfg_ml->CheckUser($userid,$pwd);  
         
-        #api{{
-        if(defined('UC_API') && @include_once DEDEROOT.'/uc_client/client.php')
-        {
-            //检查帐号
-            list($uid, $username, $password, $email) = uc_user_login($userid, $pwd);
-            if($uid > 0) {
-                $password = md5($password);
-                //当UC存在用户,而CMS不存在时,就注册一个    
-                if(!$rs) {
-                    //会员的默认金币
-                    $row = $dsql->GetOne("SELECT `money`,`scores` FROM `#@__arcrank` WHERE `rank`='10' ");
-                    $scores = is_array($row) ? $row['scores'] : 0;
-                    $money = is_array($row) ? $row['money'] : 0;
-                    $logintime = $jointime = time();
-                    $loginip = $joinip = GetIP();
-                    $res = $dsql->ExecuteNoneQuery("INSERT INTO #@__member SET `mtype`='个人',`userid`='$username',`pwd`='$password',`uname`='$username',`sex`='男' ,`rank`='10',`money`='$money', `email`='$email', `scores`='$scores', `matt`='0', `face`='',`safequestion`='0',`safeanswer`='', `jointime`='$jointime',`joinip`='$joinip',`logintime`='$logintime',`loginip`='$loginip';");
-                    if($res) {
-                        $mid = $dsql->GetLastID();
-                        $data = array
-                        (
-                        0 => "INSERT INTO `#@__member_person` SET `mid`='$mid', `onlynet`='1', `sex`='男', `uname`='$username', `qq`='', `msn`='', `tel`='', `mobile`='', `place`='', `oldplace`='0' ,
-                                 `birthday`='1980-01-01', `star`='1', `income`='0', `education`='0', `height`='160', `bodytype`='0', `blood`='0', `vocation`='0', `smoke`='0', `marital`='0', `house`='0',
-                       `drink`='0', `datingtype`='0', `language`='', `nature`='', `lovemsg`='', `address`='',`uptime`='0';",
-                        1 => "INSERT INTO `#@__member_tj` SET `mid`='$mid',`article`='0',`album`='0',`archives`='0',`homecount`='0',`pagecount`='0',`feedback`='0',`friend`='0',`stow`='0';",
-                        2 => "INSERT INTO `#@__member_space` SET `mid`='$mid',`pagesize`='10',`matt`='0',`spacename`='{$uname}的空间',`spacelogo`='',`spacestyle`='person', `sign`='',`spacenews`='';",
-                        3 => "INSERT INTO `#@__member_flink` SET `mid`='$mid', `title`='织梦内容管理系统', `url`='http://www.dedecms.com';"
-                        );                        
-                        foreach($data as $val) $dsql->ExecuteNoneQuery($val);
-                    }
-                }
-                $rs = 1;
-                $row = $dsql->GetOne("SELECT `mid`, `pwd` FROM #@__member WHERE `userid`='$username'");
-                if(isset($row['mid']))
-                {
-                    $cfg_ml->PutLoginInfo($row['mid']);
-                    if($password!=$row['pwd']) $dsql->ExecuteNoneQuery("UPDATE #@__member SET `pwd`='$password' WHERE mid='$row[mid]'");
-                }
-                //生成同步登录的代码
-                $ucsynlogin = uc_user_synlogin($uid);
-            } else if($uid == -1) {
-                //当UC不存在该用而CMS存在,就注册一个.
-                if($rs) {
-                    $row = $dsql->GetOne("SELECT `email` FROM #@__member WHERE userid='$userid'");                    
-                    $uid = uc_user_register($userid, $pwd, $row['email']);
-                    if($uid > 0) $ucsynlogin = uc_user_synlogin($uid);
-                } else {
-                    $rs = -1;
-                }
-            } else {
-                $rs = -1;
-            }
-        }
-        #/aip}}        
-        
         if($rs==0)
         {
             ResetVdValue();
@@ -357,6 +304,7 @@ else if($fmdo=='login')
                 ShowMsg("成功登录，现在转向指定页面...",$gourl,0,2000);
             }
             exit();
+            
         }
     }
 
@@ -372,6 +320,11 @@ else if($fmdo=='login')
         #/aip}}
         ShowMsg("成功退出登录！","index.php",0,2000);
         exit();
+    }
+    //修改密码
+    else if($dopost == 'resetpwd')
+    {
+       $pwdold =  $dsql->GetOne('select pwd from ');
     }
 }
 /*********************

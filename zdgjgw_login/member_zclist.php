@@ -13,6 +13,8 @@ require_once(dirname(__FILE__)."/config.php");
 require_once(DEDEINC."/datalistcp.class.php");
 setcookie("ENV_GOBACK_URL",$dedeNowurl,time()+3600,"/");
 if(!isset($dopost)) $dopost = '';
+//查询会员信息及推荐人名称
+//SELECT m.*, p.userid as pname FROM `dede_member` as  m  LEFT JOIN `dede_member` p on p.mid = m.cardno  WHERE m.userid LIKE '%%' and m.mid =21
 
 if($dopost=='' || $dopost=='search')
 {

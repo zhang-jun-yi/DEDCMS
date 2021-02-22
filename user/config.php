@@ -6,8 +6,8 @@
  * @license        http://help.dedecms.com/usersguide/license.html
  * @link           http://www.dedecms.com
  */
-//针对会员中心操作进行XSS过滤
 
+//针对会员中心操作进行XSS过滤
 function XSSClean($val) {
     global $cfg_soft_lang;
     if($cfg_soft_lang=='gb2312') gb2utf8($val);
@@ -15,7 +15,7 @@ function XSSClean($val) {
     {
         while (list($key) = each($val))
         {
-            if(in_array($key,array('tags','body','dede_fields','dede_addonfields','dopost'))) continue;
+            if(in_array($key,array('tags','body','dede_fields','dede_addonfields','dopost','introduce'))) continue;
             $val[$key] = XSSClean($val[$key]);
         }
         return $val;
@@ -89,8 +89,14 @@ $gourl = empty($gourl)? "" : RemoveXSS($gourl);
 //检查是否开放会员功能
 if($cfg_mb_open=='N')
 {
-    ShowMsg("系统关闭了会员功能，因此你无法访问此页面！","javascript:;");
-    exit();
+    if ( defined( 'AJAXLOGIN' ) )
+    {
+        die('');
+    } else {
+        ShowMsg("系统关闭了会员功能，因此你无法访问此页面！","javascript:;");
+        exit();
+    }
+
 }
 $keeptime = isset($keeptime) && is_numeric($keeptime) ? $keeptime : -1;
 $cfg_ml = new MemberLogin($keeptime);
@@ -116,7 +122,7 @@ function CheckRank($rank=0, $money=0, $needinfo=TRUE)
     global $cfg_ml,$cfg_memberurl,$cfg_mb_reginfo,$cfg_mb_spacesta;
     if(!$cfg_ml->IsLogin())
     {
-        header("Location:/user/login.php?gourl=".urlencode(GetCurUrl()));
+        header("Location:{$cfg_memberurl}/login.php?gourl=".urlencode(GetCurUrl()));
         exit();
     }
     else
@@ -126,7 +132,7 @@ function CheckRank($rank=0, $money=0, $needinfo=TRUE)
             //如果启用注册详细信息
             if($cfg_ml->fields['spacesta'] == 0 || $cfg_ml->fields['spacesta'] == 1)
             {
-                ShowMsg("尚未完成详细资料，请完善...","/user/index_do.php?fmdo=user&dopost=regnew&step=2",0,1000);
+                ShowMsg("尚未完成详细资料，请完善...","{$cfg_memberurl}/index_do.php?fmdo=user&dopost=regnew&step=2",0,1000);
                 exit;
             }
         }
@@ -135,7 +141,7 @@ function CheckRank($rank=0, $money=0, $needinfo=TRUE)
             //如果启用注册邮件验证
             if($cfg_ml->fields['spacesta'] == '-10')
             {
-                  $msg="您尚未进行邮件验证，请到邮箱查阅...</br>重新发送邮件验证 <a href='/user/index_do.php?fmdo=sendMail'><font color='red'>点击此处</font></a>";
+                  $msg="您尚未进行邮件验证，请到邮箱查阅...</br>重新发送邮件验证 <a href='/member/index_do.php?fmdo=sendMail'><font color='red'>点击此处</font></a>";
                 ShowMsg($msg,"-1",0,5000);
                 exit;
             }
@@ -206,4 +212,3 @@ function countArchives($channelid)
         return FALSE;
     }
 }
-

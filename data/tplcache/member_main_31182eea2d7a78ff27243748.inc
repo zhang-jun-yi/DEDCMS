@@ -30,16 +30,7 @@ $fields = array();
                         <tr>
                             <td>关键字：</td>
                             <td><input name="keyword" type="text" id="keyword" size="12" style="width:120px" value="<?php echo $GLOBALS['keyword']; ?>" /></td>
-                            <td>&nbsp;排序：</td>
-
-                            <td>
-                                <select name="sex" id="sex" style="width:120px">
-               <?php echo $GLOBALS['sexform']; ?>
-               <option value="男">男</option>
-               <option value="女">女</option>
-               <option value="保密">保密</option>
-             </select>
-                            </td>
+                            
                             <td>
                                 <input name="imageField" class="np" type="image" src="images/button_search.gif" width="60" height="22" border="0" />
                             </td>
@@ -62,15 +53,12 @@ $fields = array();
             </tr>
             <tr bgcolor="#FEFCEF" height="30" align="center">
                 <td width="3%">选择</td>
-                <td width="3%">mid</td>
+                <td width="10%">mid</td>
                 <td width="10%">用户名</td>
-                <td width="8%">推荐人</td>
-                <td width="5%">性别</td>
-                <td width="8%">真实姓名</td>
-                <td width="10%">手机号</td>
-                <td width="12%">身份证号</td>
-                <td width="12%">银行卡号</td>
+                <td width="10%">推荐人</td>
                 <td width="15%">开户行</td>
+                <td width="15%">期货账号</td>
+                <td width="15%">加入时间</td>
                 <td>操作</td>
             </tr>
             <?php
@@ -89,25 +77,16 @@ foreach( $blockValue as $key=>$fields )
                     <?php echo $fields['userid']; ?>
                 </td>
                 <td>
-                    <?php echo $fields['uname']; ?>
-                </td>
-                <td>
-                    <?php echo $fields['sex']; ?>
-                </td>
-                <td>
-                    <?php echo $fields['rname']; ?>
-                </td>
-                <td>
-                    <?php echo $fields['phone']; ?>
-                </td>
-                <td>
-                    <?php echo $fields['cardno']; ?>
-                </td>
-                <td>
-                    <?php echo $fields['bankno']; ?>
+                    <?php echo $fields['pname']; ?>
                 </td>
                 <td>
                     <?php echo $fields['bankaddr']; ?>
+                </td>
+                <td>
+                    <?php echo $fields['qhuid']; ?>
+                </td>
+                <td>
+                    <?php echo $fields['jointime']; ?>
                 </td>
                 <td align="center">
                     <a href="member_view.php?id=<?php echo $fields['mid']; ?>">修改</a> |

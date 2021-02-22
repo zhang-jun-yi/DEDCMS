@@ -71,9 +71,9 @@ $fields = array();
                 <td width="11%">用户名</td>
                 <td width="11%">推荐人</td>
                 <td width="16%">入金账号</td>
-                <td width="5%">入金金额</td>
+                <td width="15%">入金金额</td>
                 <td width="8%">状态</td>
-                <td width="20%">支付方式</td>
+                <td width="10%">支付方式</td>
                 <td width="14%">时间</td>
                 <td>操作</td>
             </tr>
@@ -110,7 +110,13 @@ foreach( $blockValue as $key=>$fields )
                     <?php } ?>
                 </td>
                 <td>
-                    <?php echo $fields['pstyle']; ?>
+                    <?php if($fields['pstyle'] == 0){ ?>
+                    微信支付
+                    <?php }  if($fields['pstyle'] == 1){ ?>
+                    支付宝
+                    <?php }  if($fields['pstyle'] == 2){ ?>
+                    银行转账
+                    <?php } ?>
                 </td>
                 <td>
                     <?php echo $fields['ctime']; ?>

@@ -247,7 +247,7 @@ class DataListCP
 				$found = false;
 			 }
 		  }
-		}
+		} 
 		if($cfg_soft_lang=='gb2312') $val = utf82gb($val);
 		return $val;
 	}

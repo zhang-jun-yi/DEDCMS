@@ -47,9 +47,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" class='bline'>昵　称：</td>
-                                <td class='bline' style="text-align:left;">
-                                    <input name="uname" type="text" value="<?php echo $row['uname']?>" id="uname" size="20" style="width:150px;" />
+                                <td width="17%" align="right" class='bline'>推荐人：</td>
+                                <td width="83%" class='bline' style="text-align:left;">
+                                    <?php
+                                         echo "<b>".$row['pname']."</b>"; 
+                                    ?>
                                 </td>
                             </tr>
                             <tr>
@@ -64,26 +66,7 @@
                                     <input name="qhpwd" type="text" value="<?php echo $row['qhpwd']?>" id="qhpwd" size="20" style="width:150px;" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td align="right" class='bline'>性　别：</td>
-                                <td class='bline' style="text-align:left;">
-                                    <input type="radio" name="sex" class="np" value="男" <?php if($row[ 'sex']=="男" ) echo " checked='1'" ;?> /> 男 &nbsp;
-                                    <input type="radio" name="sex" class="np" value="女" <?php if($row[ 'sex']=="女" ) echo " checked='1'" ;?> /> 女
-                                    <input type="radio" name="sex" class="np" value="" <?php if($row[ 'sex']=="" ) echo " checked='1'" ;?> /> 保密
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" class='bline'>真实姓名：</td>
-                                <td class='bline' style="text-align:left;">
-                                    <input name="rname" type="text" value="<?php echo $row['rname']?>" id="rname" size="20" style="width:150px;" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right" class='bline'>身份证号：</td>
-                                <td class='bline' style="text-align:left;">
-                                    <input name="cardno" type="text" value="<?php echo $row['cardno']?>" id="cardno" size="20" style="width:150px;" />
-                                </td>
-                            </tr>
+                           
                             <tr>
                                 <td align="right" class='bline'>身份证正面照：</td>
                                 <td class='bline' style="text-align:left;">
@@ -100,7 +83,14 @@
                                     <img src="<?php echo $row['pic2']?>" width="300px" height="160px" />
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td align="right" class='bline'>银行卡正面照：</td>
+                                <td class='bline' style="text-align:left;">
+                                    <input type="hidden" name="pic32" value="<?php echo $row['pic3']?>" />
+                                    <input name="pic31" type="file" id="pic31" style="width:300px" /></br>
+                                    <img src="<?php echo $row['pic3']?>" width="300px" height="160px" />
+                                </td>
+                            </tr>
                             <tr>
                                 <td align="right" class='bline'>密　码：</td>
                                 <td class='bline' style="text-align:left;">

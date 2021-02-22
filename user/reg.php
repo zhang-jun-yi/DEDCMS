@@ -9,9 +9,6 @@
 
 require_once(dirname(__FILE__)."/config.php");
 require_once(DEDEINC.'/membermodel.cls.php');
-require_once(DEDEMEMBER.'/inc/inc_archives_functions.php');
-header("Access-Control-Allow-Origin: *"); //解决跨域
-header('Access-Control-Allow-Methods:post');// 响应类型
 if($cfg_mb_allowreg=='N')
 {
     ShowMsg('系统关闭了新用户注册！', 'index.php');
@@ -22,14 +19,20 @@ if(!isset($dopost)) $dopost = '';
 $step = empty($step)? 0 : intval(preg_replace("/[^\d]/", '', $step));
 $mid='0';//当前注册用户ID
 
+
 //注册用户基本信息
 if($step == 1 && $dopost == 'regbase')
 {
+    //检查当前用户名是否可用
     $rs = CheckUserID($userid, '用户名');
     if($rs != 'ok')
     {
         ShowMsg($rs, '-1');
         exit();
+    }
+    if(strlen($pid)<0)
+    {
+        ShowMsg('请您填写您的推荐人ID','-1');
     }
     if(strlen($userid) < $cfg_mb_idmin )
     {
@@ -41,87 +44,62 @@ if($step == 1 && $dopost == 'regbase')
         ShowMsg("您的密码少于".$cfg_mb_pwdmin."位，不允许注册！","-1");
         exit();
     }
-    $jointime = time();//当前时间
-    $joinip = GetIP();//当前登录IP
-    $inQuery = "INSERT INTO `#@__member` (`mtype` ,`jointime` ,`joinip`) VALUES ('$mtype','$jointime','$joinip'); ";
-    if($dsql->ExecuteNoneQuery($inQuery))
-        $mid = $dsql->GetLastID();
-    //加入到cookie中
-    setcookie('mid',$mid,time()+1800);
-    setcookie('uid',trim($userid),time()+1800);
-    setcookie('pwd',md5(trim($pwd)),time()+1800);
-    setcookie('pid',trim($pid),time()+1800);
-    //转入下一步页面
-    require_once(DEDEMEMBER."/templets/reg-new2.htm");
+    //返回结果
+   $result = array();
+   $result['code'] =0;
+   $result['msg'] ='提交成功';
+   $row =array();
+   $row['uid']=$userid;
+   $row['pid']=$pid;
+   $row['pwd']=md5(trim($pwd));
+   $result['data'] =$row;
+    echo json_encode($result);
 } elseif($dopost == 'reginfo' && $step == '2')
-{
-    /*
-    $mid = $_COOKIE['mid'];
-    $mid=10016;
-
-    $card1url = MemberUploads('card1url','',$mid,$utype,'',-1,-1,true);
-    $card2url = MemberUploads('card2url','',$mid,$utype,'',-1,-1,true);
-    $card3url = MemberUploads('card3url','',$mid,$utype,'',-1,-1,true);
-
-    SaveUploadInfo('card1url',$card1url,$mediatype);
-    SaveUploadInfo('card2url',$card2url,$mediatype);
-    SaveUploadInfo('card3url',$card3url,$mediatype);
-
-    setcookie('card1url',$card1url,time()+1800);
-    setcookie('card2url',$card2url,time()+1800);
-    setcookie('card3url',$card3url,time()+1800);
-   */
-    setcookie('bank',$bank,time()+1800);
-    require_once(DEDEMEMBER."/templets/reg-book.htm");
+{ 
+    $result = array();
+    $result['code'] =0;
+    $result['msg'] ='提交成功';
+    $row2 = array();
+    $row2['bank']=$bank;
+    $row2['card1url']=$card1url;
+    $row2['card2url']=$card2url;
+    $row2['card3url']=$card3url;
+    $result['data'] =$row2;
+    echo json_encode($result);
 } elseif($dopost == 'reght' && $step == '3')
 {
+    $one = $_POST['one'];//基本信息
+    $two = $_POST['two'];//个人信息
+    $jointime = time();
+    $joinip = GetIP();
+    $mtype ='个人';
     //获取对应的值
-    $mid = $_COOKIE['mid'];
-    $uid =$_COOKIE['uid'];
-    $pwd =$_COOKIE['pwd'];
-    $pid =$_COOKIE['pid'];//用cardno存储推荐码
-    $bank = $_COOKIE['bank'];//开户行地址
-    $sz = $_COOKIE['card1url'];//身份证正面照
-    $sf = $_COOKIE['card2url'];//身份证反面照
-    $bz = $_COOKIE['card3url'];//银行卡照片
-    $sql = "UPDATE `#@__member` SET `userid`='$uid',`pwd`='$pwd',`cardno`='$pid',`bankaddr`='$bank',`pic1`='$sz',`pic2`='$sf',`pic3`='$bz' WHERE mid='$mid'";
+    $uid =$one['uid'];
+    $pwd =$one['pwd'];;
+    $pid =$one['pid'];//用cardno存储推荐码
+    $bank = $two['bank'];//开户行地址
+    $sz =$two['card1url'];//身份证正面照
+    $sf = $two['card2url'];//身份证反面照
+    $bz = $two['card3url'];//银行卡照片
+    $sql = "INSERT INTO `#@__member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `pic1`, `pic2`, `pic3`, `bankaddr`) 
+    VALUES ('$mtype','$uid','$pwd','$jointime','$joinip','$pid','$sz','$sf','$bz','$bank')";
     if($dsql->ExecuteNoneQuery($sql))
     {
-        //清除cookie值
-        setcookie('mid','',time()-1800);
-        setcookie('uid','',time()-1800);
-        setcookie('pwd','',time()-1800);
-        setcookie('pid','',time()-1800);
-        setcookie('bank','',time()-1800);
-        setcookie('card1url','',time()-1800);
-        setcookie('card2url','',time()-1800);
-        setcookie('card3url','',time()-1800);
-        ShowMsg("恭喜您注册成功", 'login.php');
-        exit;
+        $result = array();
+        $result['code'] =0;
+        $result['msg'] ='恭喜您，成功注册成为会员！';
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
     }
     else
     {
-        ShowMsg("注册失败，请检查资料是否有误或与管理员联系！", "-1");
-        exit();
+        $result = array();
+        $result['code'] =0;
+        $result['msg'] ='注册失败，请检查填写信息是否有误或与管理员联系！';
+        echo json_encode($result,JSON_UNESCAPED_UNICODE);
     }
 }
 else
 {
-    require_once(DEDEMEMBER."/templets/reg-new.htm");
+    require_once(DEDEMEMBER."/templets/reg.htm");
 }
 
-//上传照片
-$img = !empty($_POST['img'])?$_POST['img']:'';
-if(!empty($img))
-{
-     #/aip}}
-     $utype = 'image';
-     $mid = $_COOKIE['mid'];
-     //$mid=10016;
-     //身份正面照片
-     $filename = MemberUploads('file','',$mid,$utype,'',-1,-1,true);
-     SaveUploadInfo($mid,$filename,$mediatype);
-    setcookie($img,$filename,time()+1800);
-    $reseon = array('code'=>0,'msg'=>$filename);
-    return json_encode($reseon);
-}

@@ -1,42 +1,113 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><?php echo $cfg_webname; ?>- 会员登录</title>
-        <!-- CSS -->
-        <link rel="stylesheet" href="templets/siy/css/bootstrap.min_1.css">
-        <link rel="stylesheet" href="templets/siy/css/font-awesome.min_1.css">
-        <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy.css" type="text/css" media="all" />
-        <link rel="stylesheet" rev="stylesheet" href="templets/siy/css/sy_1.css" media="all" />
-    </head>
-    <body>
-        <div class="tx-login">
-            <!-- Top content -->
-            <div class="tx-login-box">
-                <h1 class="text-center mb20">会员登录</h1>
-                <p class="text-center mb20 hui">请输入您的用户名、密码和验证码后登录</p>
-                <div class="form-bottom">
-						 <form name='form1' method='POST' action='index_do.php' class="login-form">
-								 <input type="hidden" name="fmdo" value="login">
-      <input type="hidden" name="dopost" value="login">
-      <input type="hidden" name="gourl" value="<?php if(!empty($gourl)) echo $gourl;?>">
-                        <div class="tx-xian">
-							<input id="txtUsername" type="text" class="form-username tx-input1" placeholder="用户名..." name="userid"/>
-                        </div>
-                        <div class="tx-xian">
-                            <input id="txtPassword" type="password" class="form-username tx-input1" placeholder="密码..." name="pwd"/>
-                        </div>                
-                        <div class="tx-xian tx-verifycode1">
-                            <input type="text" name="vdcode" placeholder="验证码..." class="form-verifycode tx-input1" id="vdcode">
-							<img id="vdimgck" align="absmiddle" onclick="this.src=this.src+'?'" class="tx-verifycode"  alt="看不清？点击更换" src="../include/vdimgck.php"/>
-                        </div>
-                        <p class="text-center mb20">还没有<?php echo $cfg_webname; ?>帐号？ <a href="reg.php">立即注册</a> <!--或者  
-						<a href="" target="_blank"><img src="templets/siy/picture/qqlogin.png" alt="QQ登录" title="QQ登录"></a-->&nbsp;&nbsp;<a href="resetpassword.php">忘记密码</a></p>  
-						<button    type="submit" class="tx-button" >登 录</button>
-                    </form>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <title>会员中心-登陆</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="templets/lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="templets/css/login.css" media="all">
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="main-body">
+    <div class="login-main">
+        <div class="login-top">
+            <span>会员中心-登陆</span>
+            <span class="bg1"></span>
+            <span class="bg2"></span>
         </div>
-    </body>
+        <form class="layui-form login-bottom"  method='POST' action='index_do.php' >
+            <input type="hidden" name="fmdo" value="login">
+            <input type="hidden" name="dopost" value="login">
+            <div class="center">
+                <div class="item">
+                    <span class="icon icon-2"></span>
+                    <input type="text" name="userid" lay-verify="required"  placeholder="请输入登录账号" maxlength="24"/>
+                </div>
+
+                <div class="item">
+                    <span class="icon icon-3"></span>
+                    <input type="password" name="pwd" lay-verify="required"  placeholder="请输入密码" maxlength="20">
+                    <span class="bind-password icon icon-4"></span>
+                </div>
+
+                <div id="validatePanel" class="item" style="width: 137px;">
+                    <input type="text" id="vdcode" name="vdcode" placeholder="请输入验证码" maxlength="4">
+                    <img id="vdimgck" class="validateImg" onclick="this.src = this.src+'?'" src="../include/vdimgck.php" >
+                </div>
+
+            </div>
+            <div class="tip">
+                <span class="icon-nocheck"></span>
+                <span class="login-tip">保持登录</span>
+                <a href="reg.php" class="forget-password">会员注册</a>
+            </div>
+            <div class="layui-form-item" style="text-align:center; width:100%;height:100%;margin:0px;">
+                <button class="login-btn" lay-submit="" lay-filter="login">立即登录</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="templets/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['form','jquery','miniAdmin'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            miniAdmin = layui.miniAdmin,
+            layer = layui.layer;
+
+        // 登录过期的时候，跳出ifram框架
+        if (top.location != self.location) top.location = self.location;
+
+        $('.bind-password').on('click', function () {
+            if ($(this).hasClass('icon-5')) {
+                $(this).removeClass('icon-5');
+                $("input[name='password']").attr('type', 'password');
+            } else {
+                $(this).addClass('icon-5');
+                $("input[name='password']").attr('type', 'text');
+            }
+        });
+
+        $('.icon-nocheck').on('click', function () {
+            if ($(this).hasClass('icon-check')) {
+                $(this).removeClass('icon-check');
+            } else {
+                $(this).addClass('icon-check');
+            }
+        });
+
+        // 进行登录操作
+        form.on('submit(login)', function (data) {
+            data = data.field.dopost='login';
+            if (data.username == '') {
+                layer.msg('用户名不能为空');
+                return false;
+            }
+            if (data.password == '') {
+                layer.msg('密码不能为空');
+                return false;
+            }
+            if (data.captcha == '') {
+                layer.msg('验证码不能为空');
+                return false;
+            }
+            $.ajax({
+            url: 'index_do.php',
+            data: data.field
+        });
+    });
+    });
+</script>
+</body>
 </html>

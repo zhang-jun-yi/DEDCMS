@@ -27,16 +27,7 @@
                         <tr>
                             <td>关键字：</td>
                             <td><input name="keyword" type="text" id="keyword" size="12" style="width:120px" value="{dede:global name='keyword'/}" /></td>
-                            <td>&nbsp;排序：</td>
-
-                            <td>
-                                <select name="sex" id="sex" style="width:120px">
-               {dede:global name='sexform'/}
-               <option value="男">男</option>
-               <option value="女">女</option>
-               <option value="保密">保密</option>
-             </select>
-                            </td>
+                            
                             <td>
                                 <input name="imageField" class="np" type="image" src="images/button_search.gif" width="60" height="22" border="0" />
                             </td>
@@ -59,15 +50,12 @@
             </tr>
             <tr bgcolor="#FEFCEF" height="30" align="center">
                 <td width="3%">选择</td>
-                <td width="3%">mid</td>
+                <td width="10%">mid</td>
                 <td width="10%">用户名</td>
-                <td width="8%">推荐人</td>
-                <td width="5%">性别</td>
-                <td width="8%">真实姓名</td>
-                <td width="10%">手机号</td>
-                <td width="12%">身份证号</td>
-                <td width="12%">银行卡号</td>
+                <td width="10%">推荐人</td>
                 <td width="15%">开户行</td>
+                <td width="15%">期货账号</td>
+                <td width="15%">加入时间</td>
                 <td>操作</td>
             </tr>
             {dede:datalist}
@@ -79,25 +67,16 @@
                     {dede:field.userid/}
                 </td>
                 <td>
-                    {dede:field.uname/}
-                </td>
-                <td>
-                    {dede:field.sex /}
-                </td>
-                <td>
-                    {dede:field.rname /}
-                </td>
-                <td>
-                    {dede:field.phone /}
-                </td>
-                <td>
-                    {dede:field.cardno /}
-                </td>
-                <td>
-                    {dede:field.bankno /}
+                    {dede:field.pname/}
                 </td>
                 <td>
                     {dede:field.bankaddr /}
+                </td>
+                <td>
+                    {dede:field.qhuid /}
+                </td>
+                <td>
+                    {dede:field.jointime /}
                 </td>
                 <td align="center">
                     <a href="member_view.php?id={dede:field.mid/}">修改</a> |

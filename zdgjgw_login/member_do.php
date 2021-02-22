@@ -201,30 +201,20 @@ else if ($dopost=='edituser')
     //身份反面照片
     $pic2name = MemberUploads('pic21','',$id,$utype,'',-1,-1,true);
     if(empty($pic2name)) {$pic2name = $pic22;}
-    //手持身份证照片
-    //$pic3name = MemberUploads('pic31','',$id,$utype,'',-1,-1,true);
-    //if(empty($pic3name)) {$pic3name = $pic32;}
+    //银行卡正面照片
+    $pic3name = MemberUploads('pic31','',$id,$utype,'',-1,-1,true);
+    if(empty($pic3name)) {$pic3name = $pic32;}
     //保存图片信息
     SaveUploadInfo($id,$filename,$mediatype);
     SaveUploadInfo($id,$pic2name,$mediatype);
-    //SaveUploadInfo($id,$pic3name,$mediatype);
+    SaveUploadInfo($id,$pic3name,$mediatype);
     
     $query = "UPDATE `#@__member` SET
-            email = '$email',
-            uname = '$uname',
-            sex = '$sex',
-            matt = '$matt',
-            money = '$money',
-            scores = '$scores',
-            rank = '$rank',
-            spacesta='$spacesta',
             uptime='$uptime',
             exptime='$exptime',
-            rname ='$rname', 
-            cardno='$cardno',
             pic1='$filename',
             pic2='$pic2name',
-            pic3='',
+            pic3='$pic3name',
             qhuid='$qhuid',
             qhpwd='$qhpwd'
             $pwdsql
@@ -233,20 +223,11 @@ else if ($dopost=='edituser')
     if($rs==0)
     {
         $query = "UPDATE `#@__member` SET
-            email = '$email',
-            uname = '$uname',
-            sex = '$sex',
-            money = '$money',
-            scores = '$scores',
-            rank = '$rank',
-            spacesta='$spacesta',
             uptime='$uptime',
             exptime='$exptime',
-            rname ='$rname', 
-            cardno='$cardno',
             pic1='$filename',
             pic2='$pic2name',
-            pic3='',
+            pic3='$pic3name',
             qhuid='$qhuid',
             qhpwd='$qhpwd'
             $pwdsql

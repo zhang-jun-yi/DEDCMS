@@ -68,9 +68,9 @@
                 <td width="11%">用户名</td>
                 <td width="11%">推荐人</td>
                 <td width="16%">入金账号</td>
-                <td width="5%">入金金额</td>
+                <td width="15%">入金金额</td>
                 <td width="8%">状态</td>
-                <td width="20%">支付方式</td>
+                <td width="10%">支付方式</td>
                 <td width="14%">时间</td>
                 <td>操作</td>
             </tr>
@@ -102,7 +102,15 @@
                     {/dede:if}
                 </td>
                 <td>
-                    {dede:field.pstyle /}
+                    {dede:if $fields['pstyle'] == 0}
+                    微信支付
+                    {/dede:if}
+                    {dede:if $fields['pstyle'] == 1}
+                    支付宝
+                    {/dede:if}
+                    {dede:if $fields['pstyle'] == 2}
+                    银行转账
+                    {/dede:if}
                 </td>
                 <td>
                     {dede:field.ctime /}
