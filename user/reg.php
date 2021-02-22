@@ -18,7 +18,13 @@ if($cfg_mb_allowreg=='N')
 if(!isset($dopost)) $dopost = '';
 $step = empty($step)? 0 : intval(preg_replace("/[^\d]/", '', $step));
 $mid='0';//当前注册用户ID
-
+//检查是否有邀请人ID
+$pidStr ='<input type="text" name="pid" placeholder="请填写推荐人ID" class="layui-input" lay-verify="number" required/>';
+if(!empty($_GET['id']) && $_GET['id']>0)
+{
+    $pid=$_GET['id'];
+    $pidStr=" <input type='text' name='pid' class='layui-input' lay-verify='number' disabled  value='$pid'/>";
+}
 
 //注册用户基本信息
 if($step == 1 && $dopost == 'regbase')

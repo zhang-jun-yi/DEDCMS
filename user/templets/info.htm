@@ -21,6 +21,17 @@
     <link href="templets/siy/css/angulr-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="templets/siy/css/font.css" type="text/css" />
     <link rel="stylesheet" href="templets/siy/css/app.css" type="text/css" />
+    <style type="text/css">
+    #img {
+        width: 25px;
+        height: 15px;
+        position:absolute;
+        margin-left: 120px;
+        margin-top: 12px;
+        top: 1px;
+        text-align: center;
+    }
+</style>
     <script src="templets/siy/js/jquery.js"></script>
     <script src="templets/siy/js/zbp_add.js"></script>
     <!-- ZCenter js-->
@@ -60,9 +71,10 @@
             <div class="layuimini-container layuimini-page-anim">
                 <div class="layuimini-main" style="overflow: auto;">
                     <blockquote class="layui-elem-quote layui-text">
-                        我的邀请码：<span style="color: red;"><?php echo $row['mid'] ?></span> 
+                        我的邀请链接：<span style="color: red;"><?php echo $share_url ?></span> 
                     </blockquote>
                     <form class="layui-form" action="">
+                        <input type="password" hidden id="pwd" value="<?php echo $row['qhpwd']; ?>" />
                         <div class="layui-form-item">
                             <label class="layui-form-label">用户名:</label>
                             <div class="layui-input-block" style="max-width: 300px;">
@@ -91,8 +103,18 @@
                                 <label class="layui-form-label">期货密码:</label>
                                 <div class="layui-input-block" style="max-width: 300px;">
                                     <div class="layui-form-mid layui-word-aux">
-                                        <span style="font-size: 18px;color: #333;"><?php echo $row['qhpwd']; ?></span>
+                                        <span id="qhpwd" style="font-size: 18px;color: #333;">******
+                                           </span>
+                                           <!--在密码后接img标签-->
+                                           <img id="img" src="templets/siy/images/icon-visible.png">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邀请二维码</label>
+                                <div class="layui-input-block">
+                                    <img name="card1" src="<?php echo $imgurl; ?>"
+                                        style="width: 250px;height: 250px;" />
                                 </div>
                             </div>
                         <div class="layui-form-item">
@@ -130,8 +152,9 @@
     </div>
     <script src="templets/lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
     <script>
-        layui.use(['form', 'layedit', 'laydate'], function () {
-            var form = layui.form
+        layui.use(['form', 'jquery','layedit', 'laydate'], function () {
+            var $ = layui.jquery,
+                 form = layui.form
                 , layer = layui.layer
                 , layedit = layui.layedit
                 , laydate = layui.laydate;
@@ -140,7 +163,25 @@
              * 初始化表单，要加上，不然刷新部分组件可能会不加载
              */
             form.render();
+
+            //查看密码
+            $('#img').on('click',function () {
+                 var demoImg = document.getElementById("img");
+                 var qhPWD = document.getElementById("qhpwd");
+                 var pwd = document.getElementById("pwd");//期货密码
+                 if (pwd.type == "password") {
+                 pwd.type = "text";
+                 qhPWD.innerText =pwd.value;
+                 demoImg.src = "templets/siy/images/icon-invisible.png"; //图片路径（闭眼图片）
+                 } else {
+                 pwd.type = "password";
+                 qhPWD.innerText ="******";
+                 demoImg.src = "templets/siy/images/icon-visible.png"; // 图片路径（睁眼图片）
+                 }
+            })
         });
+
+            
     </script>
     <script src="templets/siy/js/bootstrap.js"></script>
     <script src="templets/siy/js/ui-load.js"></script>
