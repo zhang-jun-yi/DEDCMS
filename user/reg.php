@@ -9,6 +9,7 @@
 
 require_once(dirname(__FILE__)."/config.php");
 require_once(DEDEINC.'/membermodel.cls.php');
+require_once("api.php");
 if($cfg_mb_allowreg=='N')
 {
     ShowMsg('系统关闭了新用户注册！', 'index.php');
@@ -57,7 +58,7 @@ if($step == 1 && $dopost == 'regbase')
    $row =array();
    $row['uid']=$userid;
    $row['pid']=$pid;
-   $row['pwd']=md5(trim($pwd));
+   $row['pwd']=trim($pwd);
    $result['data'] =$row;
     echo json_encode($result);
 } elseif($dopost == 'reginfo' && $step == '2')
@@ -81,27 +82,49 @@ if($step == 1 && $dopost == 'regbase')
     $mtype ='个人';
     //获取对应的值
     $uid =$one['uid'];
-    $pwd =$one['pwd'];;
+    $pwd =md5(trim($one['pwd']));
+    $xgjpwd = $one['pwd'];
     $pid =$one['pid'];//用cardno存储推荐码
     $bank = $two['bank'];//开户行地址
     $sz =$two['card1url'];//身份证正面照
     $sf = $two['card2url'];//身份证反面照
     $bz = $two['card3url'];//银行卡照片
-    $sql = "INSERT INTO `#@__member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `pic1`, `pic2`, `pic3`, `bankaddr`) 
-    VALUES ('$mtype','$uid','$pwd','$jointime','$joinip','$pid','$sz','$sf','$bz','$bank')";
-    if($dsql->ExecuteNoneQuery($sql))
+
+    //注册信管家账号
+    $xgj = new xinGuanjia();
+    $user = $xgj->createaccount($uid,$xgjpwd);
+    //返回结果中的校验值不对
+    if($user['Result']['RequestID'] !=23)
     {
         $result = array();
         $result['code'] =0;
-        $result['msg'] ='恭喜您，成功注册成为会员！';
+        $result['msg'] ='返回结果中的校验值不正确，请联系管理员开户！';
         echo json_encode($result,JSON_UNESCAPED_UNICODE);
     }
-    else
-    {
-        $result = array();
-        $result['code'] =0;
-        $result['msg'] ='注册失败，请检查填写信息是否有误或与管理员联系！';
-        echo json_encode($result,JSON_UNESCAPED_UNICODE);
+    else if ($user['Result']['Error']['Code'] == '0') {
+        $account = $user['Result']['Account'];//返回的信管家账号
+        $sql = "INSERT INTO `#@__member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
+        VALUES ('$mtype','$uid','$pwd','$jointime','$joinip','$pid','$account','$xgjpwd','$sz','$sf','$bz','$bank')";
+        if($dsql->ExecuteNoneQuery($sql))
+        {
+            $result = array();
+            $result['code'] =0;
+            $result['msg'] ='恭喜您，成功注册成为会员！';
+            echo json_encode($result,JSON_UNESCAPED_UNICODE);
+        }
+        else
+        {
+            $result = array();
+            $result['code'] =0;
+            $result['msg'] ='注册失败，请检查填写信息是否有误或与管理员联系！';
+            echo json_encode($result,JSON_UNESCAPED_UNICODE);
+        }
+    } 
+    else  {
+            $result = array();
+            $result['code'] =0;
+            $result['msg'] =$user['Result']['Error']['Message'];
+            echo json_encode($result,JSON_UNESCAPED_UNICODE);
     }
 }
 else

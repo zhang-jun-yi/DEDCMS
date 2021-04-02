@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>个人信息-会员中心-
+    <title>邀请二维码-会员中心-
         <?php echo $cfg_webname; ?>
     </title>
     <meta name="viewport"  content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
@@ -64,71 +64,32 @@
             <div class="layui-card layuimini-page-header">
                     <div class="layui-breadcrumb layuimini-page-title">
                         <a lay-href="" href="/">会员中心</a><span lay-separator="">/</span>
-                        <a><cite>个人信息</cite></a><span lay-separator="">/</span>
+                        <a><cite>邀请二维码</cite></a><span lay-separator="">/</span>
                         <a><cite>基本资料</cite></a>
                     </div>
                 </div>
             <div class="layuimini-container layuimini-page-anim">
                 <div class="layuimini-main" style="overflow: auto;">
                     <blockquote class="layui-elem-quote layui-text">
-                        我的推荐人:<span style="color: red;margin-left: 10px;"><?php echo $pname; ?></span>
+                        我的邀请链接：<span style="color: red;"><?php echo $share_url ?></span> 
                     </blockquote>
                     <form class="layui-form" action="">
-                        <input type="password" hidden id="pwd" value="<?php echo $row['qhpwd']; ?>" />
                         <div class="layui-form-item">
-                            <label class="layui-form-label">用户名:</label>
+                            <label class="layui-form-label">推荐人:</label>
                             <div class="layui-input-block" style="max-width: 300px;">
                                 <div class="layui-form-mid layui-word-aux">
-                                    <span style="font-size: 18px;color: #333;"><?php echo $row['userid']; ?></span>
+                                    <span style="font-size: 18px;color: #333;"><?php echo $pname; ?></span>
                                 </div>
                             </div>
                         </div>
-                          <div class="layui-form-item">
-                              <label class="layui-form-label">期货账号:</label>
-                              <div class="layui-input-block" style="max-width: 300px;">
-                                  <div class="layui-form-mid layui-word-aux">
-                                      <span style="font-size: 18px;color: #333;"><?php echo $row['qhuid']; ?></span>
-                                  </div>
-                              </div>
-                          </div>
+                        
                             <div class="layui-form-item">
-                                <label class="layui-form-label">期货密码:</label>
-                                <div class="layui-input-block" style="max-width: 300px;">
-                                    <div class="layui-form-mid layui-word-aux">
-                                        <span id="qhpwd" style="font-size: 18px;color: #333;">******
-                                           </span>
-                                           <!--在密码后接img标签-->
-                                           <img id="img" src="templets/siy/images/icon-visible.png">
-                                    </div>
+                                <label class="layui-form-label">邀请二维码</label>
+                                <div class="layui-input-block">
+                                    <img name="card1" src="<?php echo $imgurl; ?>"
+                                        style="width: 250px;height: 250px;" />
                                 </div>
                             </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">开户行:</label>
-                            <div class="layui-input-block" style="max-width: 300px;">
-                                <div class="layui-form-mid layui-word-aux">
-                                    <span style="font-size: 18px;color: #333;"><?php echo $row['bankaddr']; ?></span>
-                                </div>
-                            
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">身份证正面照</label>
-                            <div class="layui-input-block">
-                                <img name="card1"  src="<?php echo $row['pic1']; ?>" style="width: 250px;height: 151px;"/>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">身份证反面照</label>
-                            <div class="layui-input-block">
-                                <img name="card1"  src="<?php echo $row['pic2']; ?>" style="width: 250px;height: 151px;"/>
-                            </div>
-                        </div>
-                        <div class="layui-form-item">
-                            <label class="layui-form-label">银行卡正面照</label>
-                            <div class="layui-input-block">
-                                <img name="card1"  src="<?php echo $row['pic3']; ?>" style="width: 250px;height: 151px;"/>
-                            </div>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -148,22 +109,6 @@
              * 初始化表单，要加上，不然刷新部分组件可能会不加载
              */
             form.render();
-
-            //查看密码
-            $('#img').on('click',function () {
-                 var demoImg = document.getElementById("img");
-                 var qhPWD = document.getElementById("qhpwd");
-                 var pwd = document.getElementById("pwd");//期货密码
-                 if (pwd.type == "password") {
-                 pwd.type = "text";
-                 qhPWD.innerText =pwd.value;
-                 demoImg.src = "templets/siy/images/icon-invisible.png"; //图片路径（闭眼图片）
-                 } else {
-                 pwd.type = "password";
-                 qhPWD.innerText ="******";
-                 demoImg.src = "templets/siy/images/icon-visible.png"; // 图片路径（睁眼图片）
-                 }
-            })
         });
 
             

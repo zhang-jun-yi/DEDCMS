@@ -1,0 +1,8 @@
+127.0.0.1||/user/reg.php||INSERT INTO `dede_member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
+        VALUES ('个人','刘老郭','e10adc3949ba59abbe56e057f20f883e','1617290080','127.0.0.1','10070','6600009','123456',/uploads/userup/0/161HY919-6015.png','/uploads/userup/0/161HY931-LF.png','/uploads/userup/0/161HY931-9519.png','')||unusual character
+127.0.0.1||/user/reg.php||INSERT INTO `dede_member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
+        VALUES ('个人','刘老郭','e10adc3949ba59abbe56e057f20f883e','1617290086','127.0.0.1','10070','6600010','123456',/uploads/userup/0/161HY919-6015.png','/uploads/userup/0/161HY931-LF.png','/uploads/userup/0/161HY931-9519.png','')||unusual character
+127.0.0.1||/user/reg.php||INSERT INTO `dede_member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
+        VALUES ('个人','刘老郭','e10adc3949ba59abbe56e057f20f883e','1617290104','127.0.0.1','10070','6600011','123456',/uploads/userup/0/161HZ096-6041.png','/uploads/userup/0/161HZ0c-9295.png','/uploads/userup/0/161HZ102-9517.png','')||unusual character
+127.0.0.1||/user/reg.php||INSERT INTO `dede_member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
+        VALUES ('个人','刘老郭','e10adc3949ba59abbe56e057f20f883e','1617290304','127.0.0.1','10070','6600012','123456',/uploads/userup/0/161HZ2P-QU.png','/uploads/userup/0/161HZ2P-2915.png','/uploads/userup/0/161HZ2P-9560.png','')||unusual character
