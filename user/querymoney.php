@@ -24,7 +24,8 @@ if($result['Result']['RequestID'] !=23)
     }
 elseif ($result['Result']['Error']['Code'] == 0) {
     //只显示可用资金，基币为美金
-    $available = $result['Result']['Summary']['Available'];
+    $money = $result['Result']['Summary'];
+    $available = $money[0]['Available'];
     include(DEDEMEMBER."/templets/querymoney.htm");
 }
 else {

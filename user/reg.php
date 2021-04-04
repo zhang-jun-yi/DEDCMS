@@ -30,16 +30,22 @@ if(!empty($_GET['id']) && $_GET['id']>0)
 //注册用户基本信息
 if($step == 1 && $dopost == 'regbase')
 {
+    //返回结果
+     $result = array();
     //检查当前用户名是否可用
     $rs = CheckUserID($userid, '用户名');
     if($rs != 'ok')
     {
-        ShowMsg($rs, '-1');
-        exit();
+        $result['code'] =1;
+        $result['msg'] =$rs;
+       echo json_encode($result);
     }
     if(strlen($pid)<0)
     {
-        ShowMsg('请您填写您的推荐人ID','-1');
+          $result['code'] =1;
+    $result['msg'] ='请您填写您的推荐人ID';
+       echo json_encode($result);
+      //  ShowMsg('请您填写您的推荐人ID','-1');
     }
     if(strlen($userid) < $cfg_mb_idmin )
     {
@@ -52,14 +58,14 @@ if($step == 1 && $dopost == 'regbase')
         exit();
     }
     //返回结果
-   $result = array();
-   $result['code'] =0;
-   $result['msg'] ='提交成功';
-   $row =array();
-   $row['uid']=$userid;
-   $row['pid']=$pid;
-   $row['pwd']=trim($pwd);
-   $result['data'] =$row;
+  
+    $result['code'] =0;
+    $result['msg'] ='提交成功';
+    $row =array();
+    $row['uid']=$userid;
+    $row['pid']=$pid;
+    $row['pwd']=trim($pwd);
+    $result['data'] =$row;
     echo json_encode($result);
 } elseif($dopost == 'reginfo' && $step == '2')
 { 
@@ -100,8 +106,10 @@ if($step == 1 && $dopost == 'regbase')
         $result['code'] =0;
         $result['msg'] ='返回结果中的校验值不正确，请联系管理员开户！';
         echo json_encode($result,JSON_UNESCAPED_UNICODE);
+
     }
-    else if ($user['Result']['Error']['Code'] == '0') {
+    else if ($user['Result']['Error']['Code'] == '0')
+    {
         $account = $user['Result']['Account'];//返回的信管家账号
         $sql = "INSERT INTO `#@__member` (`mtype`, `userid`, `pwd`, `jointime`, `joinip`,  `cardno`, `qhuid`, `qhpwd`,`pic1`, `pic2`, `pic3`, `bankaddr`) 
         VALUES ('$mtype','$uid','$pwd','$jointime','$joinip','$pid','$account','$xgjpwd','$sz','$sf','$bz','$bank')";
@@ -126,6 +134,7 @@ if($step == 1 && $dopost == 'regbase')
             $result['msg'] =$user['Result']['Error']['Message'];
             echo json_encode($result,JSON_UNESCAPED_UNICODE);
     }
+    
 }
 else
 {

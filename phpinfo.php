@@ -9,6 +9,6 @@
  * @FilePath: /zhengda/phpinfo.php
  */
    $name = "sdsdsd";
-    var_dump($name);
     phpinfo();
+    var_dump($name);
  ?>

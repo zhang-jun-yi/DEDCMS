@@ -208,9 +208,18 @@
                     dataType:"JSON",
                     async:false,
                     success:function (data) {
+                        if(data.code == 0){
                         $('#data').attr('value',JSON.stringify(data.data));
-                       step.next('#stepForm');
-                       return false;
+                        step.next('#stepForm');
+                        }
+                        else{
+                         layer.msg(data.msg, {
+                         icon: 1,
+                         time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                         }, function(){
+                         });
+                        }
+                      
                     }
                 });
                 return false;
@@ -241,9 +250,13 @@
                     data:data.field,
                     dataType:"JSON",
                     success:function (data) {
-                        console.log(data.msg);
-                        layer.msg(data.msg);
+                        layer.msg(data.msg, {
+                        icon: 1,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                        //do something
                         location.href = "login.php"
+                        });
                     }
                 });
                 return false;

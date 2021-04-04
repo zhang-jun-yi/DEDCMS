@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"path": "D:\\phpstudy_pro\\WWW\\localhost\\zhengda"
+		}
+	],
+	"settings":
+	{
+		"xdebug":
+		{
+			"close_on_stop": true,
+			"ide_key": "sublime.xdebug",
+			"port": 9900,
+			"super_globals": true,
+			"url": "http://localhost"
+		}
+	}
+}

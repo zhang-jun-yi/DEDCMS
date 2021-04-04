@@ -24,8 +24,6 @@
 	public function createaccount($name,$pwd){
 		
 		$this->postdata['account']=0;
-		$this->postdata['password']='123456';
-		//$this->postdata['group']='';
 		$this->postdata['mainaccount']='HX980660';
 		//接口指定名称必须为gb2312编码
 		$name= mb_convert_encoding($name, 'GB2312', 'UTF-8');
@@ -34,10 +32,10 @@
 
 		$curl = curl_init(); // 启动一个CURL会话
 		curl_setopt($curl, CURLOPT_URL, $this->apiurl."createaccount?".http_build_query($this->postdata));
-		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);// 对认证证书来源的检查
-		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,  2);// 从证书中检查SSL加密算法是否存在
+			curl_setopt($curl, CURLOPT_HEADER, 0);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);// 对认证证书来源的检查
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,  false);// 从证书中检查SSL加密算法是否存在
 		curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);// 使用自动跳转
 		// curl_setopt($curl, CURLOPT_REFERER, $ref); // 手动设置referer
@@ -56,21 +54,19 @@
 		$result =simplexml_load_string($result); //xml转object
 		$result= json_encode($result);  //objecct转json
 		$result=json_decode($result,true); //json转array;
-				
 		return $result;
 	}
 
 	//查询账户资金
 	public function queryaccount($account){
-		
 		$this->postdata['account']=$account;
 
 		$curl = curl_init(); // 启动一个CURL会话
 		curl_setopt($curl, CURLOPT_URL, $this->apiurl."queryaccount?".http_build_query($this->postdata));
 		curl_setopt($curl, CURLOPT_HEADER, 0);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);// 对认证证书来源的检查
-		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,  2);// 从证书中检查SSL加密算法是否存在
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);// 对认证证书来源的检查
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST,  false);// 从证书中检查SSL加密算法是否存在
 		curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']); // 模拟用户使用的浏览器
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);// 使用自动跳转
 		// curl_setopt($curl, CURLOPT_REFERER, $ref); // 手动设置referer
@@ -84,13 +80,18 @@
 		$tmpInfo = curl_exec($curl);     //返回api的json对象
 		//关闭URL请求
 		curl_close($curl);
+
+		
 		$convert_out= mb_convert_encoding($tmpInfo, 'utf-8', 'GBK,GB2312,UTF-8,ASCII');//返回转码后的结果，防止出现乱码
 		$result = str_replace("GB2312","utf-8",$convert_out);//将xml结果中的GB2312替换成utf-8，这样可以转成数组时不会出错
 		$result =simplexml_load_string($result); //xml转object
 		$result= json_encode($result);  //objecct转json
 		$result=json_decode($result,true); //json转array;	
 		return $result;
+		
 	}
+
+	
 
  }
  
